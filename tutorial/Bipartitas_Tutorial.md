@@ -77,7 +77,7 @@ In the mathematical field of graph theory, a bipartite graph (or bigraph) is a g
 
 The two disjoint sets U and V where Set U contains data to be searched and Set V data is stored. The match done with these two disjoint set to match with exact data searched in Set V.
 
-# Algoritmos de visualización
+# Algoritmos de visualización existentes
 
 ## Dos Capas (Two layers)
 
@@ -125,13 +125,69 @@ Un ejemplo de uso de matchings o emparejamientos son los sitios para búsqueda d
 
 ## Incrustación Esférica (Spherical Embedding)
 
-The SE algorithm [@SaNaud2004] was primarily designed for the visualization of bipartite graphs. The items of the two subsets VA and VB are represented as nodes positioned on two concentric spheres in a three-dimensional (3-D) Euclidean space. The number of dimensions of the embedding space was set to 3 because more information can be visualized in 3-D than in 2-D. Items from subset VA are mapped on the inner sphere θA (with radius rA = 1), whereas items from VB are mapped on the outer sphere θB (with radius rB = 2). Items positions are defined in such a way that similar items in VA are close to each other on θA, and similar items in VB are close to each other on θB. Figure 1 illustrates the process of bipartite graph construction and visualization in a 2-D space using the SE algorithm. <!-- @Naud2007-->
+El algoritmo de incrustación esférica (SE por sus siglas en inglés) fue diseñado principalmente para visualización de grafos bipartitas. Los ítems de los dos grupos U y V son representados por medio de nodos posicionados en dos círculos concéntricos. Los ítems del grupo U son mapeados en el círculo interior y los ítems del grupo V son mapeados en el círculo exterior con un radio del doble del círculo interno. El propósito de este gráfico es posicionar los nodos de una manera que los items similares estén lo más cerca posible en cada uno de sus respectivos círculos. La siguiente figura muestra el proceso de construcción de un grafo bipartita y su visualización utilizando el algoritmo de incrustación esférica. <!-- 3D-SE viewer - A Text Mining Tool based on Bipartite Graph Visualization-->
 
-To achieve this goal, we search for the coordinates of the graph nodes  that minimize a sum E over all the pairs of nodes in the embedding 2-D or 3-D space, such that the sum of Euclidean distances between pairs of points along all the edges in E is minimized. The minimization is performed through a gradient descent procedure, under the requirement that the points lie on the two spheres, that is . This constrained optimization problem is converted to an unconstrained one using some sufficient statistics results (Lagrange multipliers, for further details see Golub and van Loan, Matrix computation, 1996, section on LSQI problem). The double sum E is defined as <!-- @Naud2007-->
+![](media/image6.png)
 
-where ri = rA (respectively rB) for nodes from subset VA (respectively VB), and the {wij} are positive weights that can be used to give more emphasis on pairs of nodes belonging to E. The {aij} take values in {+1,−1}, depending on whether the pairs of nodes {i,j} are in E or not. In order to clarify the effect of the {aij}, let us denote as θij the angle between the points representing nodes i and j, we have hence  and we rewrite expression (1) as <!-- @Naud2007-->
+Para conseguir esta visualización buscamos las coordenadas de los nodos del gráfico {xi,i = 1,...,|U| + |V|} que minimicen la distancia entre las relaciones (E) entre todos los pares de nodos. En algunos artículos esta minimización es realizada por medio de un procedimiento de descenso de gradiente la cual tiene un complejidad matemática avanzada por lo que hemos decido realizar este cálculo por medio de una heurística baricéntrica.
 
-When minimizing E, each term is (aij − cos θij) minimized. We can see that if two nodes i and j are connected in E, we must set aij = +1 in order to force the representing points to be close to each other  and conversely, when nodes i and j are not connected in E, their points should be far apart, which means that we must set  <!-- @Naud2007-->
+Básicamente la heurística baricéntrica utilizada en el ejemplo intenta acercar los nodos relacionados entre sí, tanto en el círculo interior como en el exterior. Una forma de visualizar que esto se logra es ver la reducción de relaciones que pasan cerca del centro del gráfico; ya que al tener los nodos relacionados más cerca, las relaciones pasan a ser más cortas y no deberían cruzar el gráfico. <!-- --Crossing Minimization Problems of Drawing Bipartite Graphs in Two Clusters.pdf>
+
+![](media/image7.png)
+
+El algoritmo para dibujar este tipo de grafos es el siguiente:
+
+1. Dibujar el círculo interno:
+
+    a. Se toma los nodos del grupo V y se colocan alrededor del círculo con distancias iguales entre ellos. Se sigue el orden original con dirección de las manecillas del reloj.
+
+2. Dibujar el círculo externo:
+
+    a. Se dibuja el círculo con el mismo centro que el círculo anterior pero con un radio de 2X, siendo X el radio del círculo interno.
+
+    b. Se toma los nodos del grupo U y se colocan alrededor del círculo con distancias iguales entre ellos. Se sigue el orden original con dirección de las manecillas del reloj.
+
+3. Se trazan las relaciones entre los nodos.
+
+4. Se calcula la heurística baricéntrica de cada nodo.
+
+    a. n = cantidad de nodos U
+
+    b. Se repite (n x 2) cantidad de veces:
+
+        i. Por cada nodo U:
+
+            1. Se obtiene la posición del nodo U.
+
+            2. Se obtiene las posiciones de todos los vecinos del nodo U.
+
+            3. Se calcula promedio de las posiciones de vecinos
+
+            4. Se asigna al nodo U ese promedio.
+
+        ii. Se ordenan los nodos U según promedio.
+
+        iii. Por cada nodo V:
+
+            1. Se obtiene la posición del nodo V.
+
+            2. Se obtiene las posiciones de todos los vecinos del nodo V.
+
+            3. Se calcula promedio de las posiciones de vecinos
+
+            4. Se asigna al nodo V ese promedio.
+
+        iv. Se ordenan los nodos V según promedio.
+
+5. Dibujar el círculo interno con nuevo orden:
+
+    a. Se toma los nodos del grupo V y se colocan alrededor del círculo con distancias iguales entre ellos. Se sigue el orden nuevo.
+
+6. Dibujar el círculo externo:
+
+    a. Se toma los nodos del grupo U y se colocan alrededor del círculo con distancias iguales entre ellos. Se sigue el orden nuevo.
+
+7. Se trazan las relaciones entre los nodos.
 
 ## Mapa anclado (Anchored Map)
 
@@ -184,5 +240,11 @@ El algoritmo para dibujar este tipo de grafos es el siguiente:
 2.  Ordenar los nodos libres en posiciones dependiendo de su relación con las anclas.
 
 Como se puede ver en el algoritmo anterior los mayores cálculo matemáticos son ejecutados en encontrar la penalidad de cada par de anclas del mapa y después en la atracción de cada nodo libre contra las anclas.
+
+## Arcos en Matriz (Matrix Arcs)
+
+# Algoritmos de visualización propuestos
+
+## Sierra
 
 # \spanishbibname
