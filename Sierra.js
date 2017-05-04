@@ -8,16 +8,17 @@ LEFT_SPACE = 0;
 //DATA.
 function initU() {
     root = [{id:0,x:0,y:0,label:"Lord of the Rings 1",type:1,pos:0,neighbors:[0,1,8]},
-        {id:1,x:0,y:0,label:"The Hobbit 1",type:1,pos:0,neighbors:[0,1,8]},
+        {id:1,x:0,y:0,label:"The Hobbit 1",type:1,pos:0,neighbors:[0,1,8,6]},
         {id:2,x:0,y:0,label:"Pirates of the Caribbean",type:1,pos:0,neighbors:[1,2]},
         {id:3,x:0,y:0,label:"Sin City",type:1,pos:0,neighbors:[0,3,4]},
         {id:4,x:0,y:0,label:"Pulp Fiction",type:1,pos:0,neighbors:[4,5,9]},
         {id:5,x:0,y:0,label:"Unbreakable",type:1,pos:0,neighbors:[4,5]},
-        {id:6,x:0,y:0,label:"Star Wars Episode 1",type:1,pos:0,neighbors:[2,5,6]},
-        {id:7,x:0,y:0,label:"Cold Mountain",type:1,pos:0,neighbors:[6,7]},
+        {id:6,x:0,y:0,label:"Star Wars Episode 1",type:1,pos:0,neighbors:[2,5,10]},
+        {id:7,x:0,y:0,label:"Cold Mountain",type:1,pos:0,neighbors:[10,7]},
         {id:8,x:0,y:0,label:"Anna Karenina",type:1,pos:0,neighbors:[2,7]},
         {id:9,x:0,y:0,label:"The Aviator",type:1,pos:0,neighbors:[7,8]},
-        {id:10,x:0,y:0,label:"Gattaca",type:1,pos:0,neighbors:[7,9]}
+        {id:10,x:0,y:0,label:"Gattaca",type:1,pos:0,neighbors:[7,9]},
+        {id:11,x:0,y:0,label:"Hot Fuzz",type:1,pos:0,neighbors:[6]},
     ];
     return root;
 }
@@ -29,10 +30,11 @@ function initV() {
         {id:3,x:0,y:0,label:"Jessica Alba",type:0,pos:0,neighbors:[3]},
         {id:4,x:0,y:0,label:"Bruce Willis",type:0,pos:0,neighbors:[3,4]},
         {id:5,x:0,y:0,label:"Samuel L. Jackson",type:0,pos:0,neighbors:[4,5,6]},
-        {id:6,x:0,y:0,label:"Natalie Portman",type:0,pos:0,neighbors:[6,7]},
+        {id:6,x:0,y:0,label:"Martin Freeman",type:0,pos:0,neighbors:[2, 11]},
         {id:7,x:0,y:0,label:"Jude Law",type:0,pos:0,neighbors:[7,8,9]},
         {id:8,x:0,y:0,label:"Cate Blanchett",type:0,pos:0,neighbors:[0,1,9]},
-        {id:9,x:0,y:0,label:"Uma Thurman",type:0,pos:0,neighbors:[4,10]}
+        {id:9,x:0,y:0,label:"Uma Thurman",type:0,pos:0,neighbors:[4,10]},
+        {id:10,x:0,y:0,label:"Natalie Portman",type:0,pos:0,neighbors:[6,7]},
     ];
     return root;
 }
@@ -169,7 +171,7 @@ function drawLinks(draw, nodesU, nodesV) {
     }
 }
 
-function drawLabels(draw, display, nodes, mode) {
+function drawLabels(draw, nodes, mode) {
     var xoffset = 4;
 
     draw.textBaseline="middle"
@@ -201,19 +203,30 @@ function drawSierras(draw, drawHeight, nodesU, nodesV) {
     var lumPercentage = 0;
 
     for (var i =0; i < nodesU.length; i++) {
-        draw.beginPath();
-        draw.moveTo(nodesU[i].x, nodesU[i].y);
-        draw.lineTo(getFarLeft(nodesU[i].neighbors, nodesV), drawHeight - BOTTOM_SPACE);
-        draw.lineTo(getFarRight(nodesU[i].neighbors, nodesV), drawHeight - BOTTOM_SPACE);
-        draw.closePath();
+        if (nodesU[i].neighbors.length == 1){
+            draw.beginPath();
+            draw.moveTo(nodesU[i].x, nodesU[i].y);
+            draw.lineTo(getFarLeft(nodesU[i].neighbors, nodesV), drawHeight - BOTTOM_SPACE);
+            draw.closePath();
 
-        draw.lineWidth = 2;
-        draw.stroke();
+            draw.lineWidth = 10;
+            draw.strokeStyle="#614126";
+            draw.stroke();
+        } else {
+            draw.beginPath();
+            draw.moveTo(nodesU[i].x, nodesU[i].y);
+            draw.lineTo(getFarLeft(nodesU[i].neighbors, nodesV), drawHeight - BOTTOM_SPACE);
+            draw.lineTo(getFarRight(nodesU[i].neighbors, nodesV), drawHeight - BOTTOM_SPACE);
+            draw.closePath();
 
-        draw.fillStyle = colorLuminance("#556B2F", lumPercentage/100);
-        draw.fill();
+            draw.lineWidth = 2;
+            draw.stroke();
 
-        lumPercentage += 15;
+            draw.fillStyle = colorLuminance("#556B2F", lumPercentage/100);
+            draw.fill();
+
+            lumPercentage += 15;
+        }
     }
     draw.restore();
 }
@@ -255,8 +268,8 @@ function main() {
     drawNodes(draw, nodesU);
     drawNodes(draw, nodesV);
 
-    drawLabels(draw, display, nodesU, TOP);
-    drawLabels(draw, display, nodesV, BOTTOM);
+    drawLabels(draw, nodesU, TOP);
+    drawLabels(draw, nodesV, BOTTOM);
 
     drawLinks(draw, nodesU, nodesV);
 }
