@@ -1,6 +1,6 @@
 ---
 title: Algoritmos sencillos para visualización de grafos bipartitas - Un tutorial
-author: 
+author:
 - Oscar Arrieta / Jason Ocampo
 - Escuela de Informática, Universidad Nacional, Heredia, Costa Rica
 abstract:
@@ -81,11 +81,11 @@ The two disjoint sets U and V where Set U contains data to be searched and Set V
 
 ## Dos Capas (Two layers)
 
-A 2-layer drawing represents a bipartite graph where each vertex is a point on one of two parallel lines, no two vertices on the same line are adjacent, and the edges are straight-line segments.
-
-Let G=(fJ, L,E) be a bipartite graph with vertex set uut and edge set Ec U x L. A typicalconvention for drawing G is to put the vertices of I/ on a ll’ne and the vertices of L on a separate, parallel line and then to represent edges by placing open straight line segments between the vertices that determine them. In this convention, a drawing is biplanar if edges do not cross, and a subgraph of G is biplanar if it has a biplanar drawing. The main results of this paper are the following: (1) it is NP-complete to determine whether G has a biplanar subgraph with at least K edges; (2) it is also NP-complete to determine whether G has such a subgraph when the positions for the vertices in either U or L are specified; (3) when the positions of the vertices in both U and L are specified. the problem can be solved in polynomial time by transformation to the longest ascending subsequence problem. <!-- @Eades1994 -->
-
 El grafo bipartita tradicional es el cual sus vértices pueden ser divididos en dos diferentes e independientes grupos (U, V) y cada uno de sus límites o elementos (u, v) conecte, ya sea, con un vértice de U a V o un vértice de V a U. En otras palabras, para cada relación (u, v), u puede pertenecer a U y v a V, o u pertenece a V y v pertenece a U. También podemos decir que ningún límite conecta con vértices del mismo grupo. La principal característica de la técnica de dos capas es la utilización de únicamente líneas rectas entre las relaciones del grupo U hacía el grupo V.
+
+Un dibujo de 2 capas representa un grafo bipatito cuando cada vértice es un punto en alguna de las dos líneas paralelas, ninguno de los vértices en la misma línea es adyacente y las relaciones son segmentos en línea recta.
+
+Una convención típica para dibujar un grafo G es poner los vértices del grupo U en una línea y los vértices del grupo V en una línea paralela y después de esto dibujar las líneas rectas o relaciones entre los vértices que liga el grupo U con el el grupo V. <!-- @Eades1994 -->
 
 ![](media/image1.png)
 
@@ -93,7 +93,7 @@ El objetivo de dibujar un grafo bipartita con la técnica de dos capas es mejora
 
 ![](media/image2.png)
 
-El algoritmo para crear un grafo de dos capas\[1\] es bastante sencillo, el mismo sigue esta lógica:
+El algoritmo para crear un grafo de dos capas es bastante sencillo, el mismo sigue esta lógica: <!--On the one-sided crossing minimization in a bipartite graph with large degrees -->
 
 1.  Se toman todos elementos del primer set (Grupo U) y se ordenan en una línea recta, ya sea horizontal o vertical.
 
@@ -111,9 +111,11 @@ El algoritmo para crear un grafo de dos capas\[1\] es bastante sencillo, el mism
 
     c.  Se repite por cada elemento ‘u’.
 
-Entre los casos de investigación más importantes acerca de este tipo de grafos se buscan los algoritmos dónde se puede evitar la mayor cantidad de cruces\[2\]\[3\] entre las relaciones por medio del ordenamiento de los nodos en el grupo U, así como de optimizar las relaciones entre ambos grupos para asignaciones directas (Matching)\[4\].
+Entre los casos de investigación más importantes acerca de este tipo de grafos se buscan los algoritmos dónde se puede evitar la mayor cantidad de cruces<!-- F. Harary, A.J. Schwenk, Trees with Hamiltonian square, Mathematiks 18 (1971) 138–140
+F. Harary, A.J. Schwenk, A new crossing number for bipartite graphs, Utilitas Math. 1 (1972) 203–209
+--> entre las relaciones por medio del ordenamiento de los nodos en el grupo U, así como de optimizar las relaciones entre ambos grupos para asignaciones directas (Matching).<!-- Hopcroft, John E.; Karp, Richard M. (1973), "An n5/2 algorithm for maximum matchings in bipartite graphs" -->
 
-En el caso del Matching o Emparejamiento es una de las aplicaciones más comunes cuando se tiene Grafos Bipartitas dibujados en forma de dos capas. La definición de emparejamiento obtener un conjunto de relaciones donde ningún par tenga el mismo vértice en común. Si el emparejamiento contiene la mayor cantidad de relaciones entonces podemos decir que es un emparejamiento máximo. Cabe aclarar que el emparejamiento no quiere decir que todos los vértices tengan que estar relacionados con otro, sino que haya la mayor cantidad de relaciones\[6\].
+En el caso del Matching o Emparejamiento es una de las aplicaciones más comunes cuando se tiene Grafos Bipartitas dibujados en forma de dos capas. La definición de emparejamiento obtener un conjunto de relaciones donde ningún par tenga el mismo vértice en común. Si el emparejamiento contiene la mayor cantidad de relaciones entonces podemos decir que es un emparejamiento máximo. Cabe aclarar que el emparejamiento no quiere decir que todos los vértices tengan que estar relacionados con otro, sino que haya la mayor cantidad de relaciones.<!-- Emparejamientos.pdf -->
 
 ![](media/image3.png)
 
@@ -133,7 +135,7 @@ When minimizing E, each term is (aij − cos θij) minimized. We can see that if
 
 ## Mapa anclado (Anchored Map)
 
-La técnica del mapa anclado tiene dos tipos de nodo, los nodos anclados y los nodos libres. Los nodos anclados son ordenados en la circunferencia a distancias iguales y los nodos libres son ubicados en posiciones con relación de cercanía a los nodos anclados. El problema que esta técnica busca solucionar es tratar de decidir el orden de los anclados en la circunferencia y la posición de los nodos libres. Utilizando esta técnica no se debe de preocupar por la ruta entre las relaciones porque siempre se utiliza una línea recta.
+La técnica del mapa anclado tiene dos tipos de nodo, los nodos anclados y los nodos libres. Los nodos anclados son ordenados en la circunferencia a distancias iguales y los nodos libres son ubicados en posiciones con relación de cercanía a los nodos anclados. El problema que esta técnica busca solucionar es tratar de decidir el orden de los anclados en la circunferencia y la posición de los nodos libres. Utilizando esta técnica no se debe de preocupar por la ruta entre las relaciones porque siempre se utiliza una línea recta.<!-- Drawing Bipartite Graphs as Anchored Maps-->
 
 A continuación vamos a describir la técnica propuesta para dibujar mapas anclados, explicar los criterios que se siguen para que el mapa cumpla su objetivo y el método para ordenar los nodos anclados para cumplir ese criterio.
 
