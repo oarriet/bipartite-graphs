@@ -3,16 +3,7 @@ TOP = 2;
 
 TOP_SPACE = 100;
 BOTTOM_SPACE = 100;
-LEFT_SPACE = 100;
-
-function Node () {
-    this.x = 0;
-    this.y = 0;
-    this.label = "";
-    this.pos = 0;
-    this.neighbors = [];
-    this.type = 0;
-}
+LEFT_SPACE = 0;
 
 //DATA.
 function initU() {
@@ -80,26 +71,65 @@ function getXDistance(nodes, drawWidth) {
     return Math.round( (drawWidth - LEFT_SPACE) / (nodes.length + 1) );
 }
 
-function setUCoordenates(nodes, drawHeight, drawWidth) {
-    //Get the distance between nodes in Y.
-    var distanceBetweenY = getYDistance(nodes, drawHeight);
-    var distanceBetweenX = getXDistance(nodes, drawWidth);
+function setUCoordenates(nodesU, nodesV, drawHeight) {
+    var distanceBetweenY = getYDistance(nodesU, drawHeight);
 
-    var currentNeighbors = nodes[0].neighbors.length;
-    var currentX = LEFT_SPACE;;
+    var currentNeighbors = nodesU[0].neighbors.length;
     var currentY = TOP_SPACE;
-    for (var i = 0; i < nodes.length; i++) {
-        currentX += distanceBetweenX;
+    for (var i = 0; i < nodesU.length; i++) {
 
-        if (currentNeighbors != nodes[i].neighbors.length){
-            currentNeighbors = nodes[i].neighbors.length;
-
+        if (currentNeighbors != nodesU[i].neighbors.length){
+            currentNeighbors = nodesU[i].neighbors.length;
             currentY += distanceBetweenY;
         }
 
-        nodes[i].x = currentX;
-        nodes[i].y = currentY;
+        var averageX = getAverageX(nodesU[i].neighbors, nodesV);
+        while (checkRepeatedX(nodesU, averageX)){
+            averageX += 10;
+        }
+
+        nodesU[i].x = averageX;
+        nodesU[i].y = currentY;
     }
+}
+
+function getFarLeft(neighbors, nodesV) {
+    var x = nodesV[neighbors[0]].x;
+
+    for (var i = 0; i < neighbors.length; i++) {
+        var currentX = nodesV[neighbors[i]].x;
+        if (currentX < x){
+            x = currentX;
+        }
+    }
+    return x;
+}
+
+function getFarRight(neighbors, nodesV) {
+    var x = 0;
+
+    for (var i = 0; i < neighbors.length; i++) {
+        var currentX = nodesV[neighbors[i]].x;
+        if (currentX > x){
+            x = currentX;
+        }
+    }
+    return x;
+}
+
+function getAverageX(neighbors, nodesV) {
+    return ( (getFarLeft(neighbors, nodesV) + getFarRight(neighbors, nodesV) ) / 2);
+}
+
+function checkRepeatedX(nodes, x) {
+    var found = false;
+    for(var i = 0; i < nodesU.length; i++) {
+        if (nodes[i].x == x) {
+            found = true;
+            break;
+        }
+    }
+    return found;
 }
 
 function setVCoordenates(nodes, drawHeight, drawWidth) {
@@ -114,7 +144,7 @@ function setVCoordenates(nodes, drawHeight, drawWidth) {
     }
 }
 
-function drawNodes(draw,nodes) {
+function drawNodes(draw, nodes) {
     for (var i =0; i< nodes.length ; i++) {
         draw.beginPath();
         draw.arc(nodes[i].x, nodes[i].y, 2, 0, 2*Math.PI);
@@ -124,34 +154,85 @@ function drawNodes(draw,nodes) {
     }
 }
 
+function drawLinks(draw, nodesU, nodesV) {
+    var n = nodesU.length;
+    for (var i =0; i<n; i++) {
+        var neighbors = nodesU[i].neighbors;
+        for (var j=0; j < neighbors.length; j++) {
+            var k = neighbors[j];
+            draw.setLineDash([5, 15]);
+            draw.beginPath();
+            draw.moveTo(nodesU[i].x,nodesU[i].y);
+            draw.lineTo(nodesV[k].x,nodesV[k].y);
+            draw.stroke();
+        }
+    }
+}
+
 function drawLabels(draw, display, nodes, mode) {
     var xoffset = 4;
 
     draw.textBaseline="middle"
     draw.fillStyle = 'black';
+    draw.textAlign = "left";
+
+    draw.save();
 
     if (mode==TOP) {
-        draw.save();
         draw.translate( draw.width - 1, 0 );
         draw.rotate(3 * Math.PI / 2);
 
-        draw.textAlign = "left";
-
         for (var i =0; i < nodes.length; i++) {
-            draw.fillText(nodes[i].label, -nodes[i].y + xoffset, nodes[i].x)
+            draw.fillText(nodes[i].label, -nodes[i].y + xoffset, nodes[i].x, TOP_SPACE-4)
         }
     } else if (mode==BOTTOM) {
-        draw.save();
         draw.translate( 0, 0 );
         draw.rotate(Math.PI/2);
 
-        draw.textAlign="left";
-
         for (var i =0; i < nodes.length; i++) {
-            draw.fillText(nodes[i].label, nodes[i].y + xoffset, -nodes[i].x)
+            draw.fillText(nodes[i].label, nodes[i].y + xoffset, -nodes[i].x, BOTTOM_SPACE-4)
         }
     }
     draw.restore();
+}
+
+function drawSierras(draw, drawHeight, nodesU, nodesV) {
+    draw.save();
+    var lumPercentage = 0;
+
+    for (var i =0; i < nodesU.length; i++) {
+        draw.beginPath();
+        draw.moveTo(nodesU[i].x, nodesU[i].y);
+        draw.lineTo(getFarLeft(nodesU[i].neighbors, nodesV), drawHeight - BOTTOM_SPACE);
+        draw.lineTo(getFarRight(nodesU[i].neighbors, nodesV), drawHeight - BOTTOM_SPACE);
+        draw.closePath();
+
+        draw.lineWidth = 2;
+        draw.stroke();
+
+        draw.fillStyle = colorLuminance("#556B2F", lumPercentage/100);
+        draw.fill();
+
+        lumPercentage += 15;
+    }
+    draw.restore();
+}
+
+function colorLuminance(hex, lum) {
+    hex = String(hex).replace(/[^0-9a-f]/gi, '');
+    if (hex.length < 6) {
+        hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+    }
+    lum = lum || 0;
+
+    var rgb = "#", c, i;
+    for (i = 0; i < 3; i++) {
+        c = parseInt(hex.substr(i*2,2), 16);
+        c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
+        rgb += ("00"+c).substr(c.length);
+    }
+
+    return rgb;
 }
 
 function main() {
@@ -166,14 +247,18 @@ function main() {
 
     nodesU.sort(comparator);
 
-    setUCoordenates(nodesU, 500, 650);
-    setVCoordenates(nodesV, 500, 650);
+    setVCoordenates(nodesV, display.height, display.width);
+    setUCoordenates(nodesU, nodesV, display.height);
+
+    drawSierras(draw, display.height, nodesU, nodesV);
 
     drawNodes(draw, nodesU);
     drawNodes(draw, nodesV);
 
     drawLabels(draw, display, nodesU, TOP);
     drawLabels(draw, display, nodesV, BOTTOM);
+
+    drawLinks(draw, nodesU, nodesV);
 }
 
 main();
