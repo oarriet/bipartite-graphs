@@ -131,7 +131,7 @@ El algoritmo de incrustación esférica (SE por sus siglas en inglés) fue dise�
 
 Para conseguir esta visualización buscamos las coordenadas de los nodos del gráfico {xi,i = 1,...,|U| + |V|} que minimicen la distancia entre las relaciones (E) entre todos los pares de nodos. En algunos artículos esta minimización es realizada por medio de un procedimiento de descenso de gradiente la cual tiene un complejidad matemática avanzada por lo que hemos decido realizar este cálculo por medio de una heurística baricéntrica.
 
-Básicamente la heurística baricéntrica utilizada en el ejemplo intenta acercar los nodos relacionados entre sí, tanto en el círculo interior como en el exterior. Una forma de visualizar que esto se logra es ver la reducción de relaciones que pasan cerca del centro del gráfico; ya que al tener los nodos relacionados más cerca, las relaciones pasan a ser más cortas y no deberían cruzar el gráfico. <!-- --Crossing Minimization Problems of Drawing Bipartite Graphs in Two Clusters.pdf>
+Básicamente la heurística baricéntrica utilizada en el ejemplo intenta acercar los nodos relacionados entre sí, tanto en el círculo interior como en el exterior. Una forma de visualizar que esto se logra es ver la reducción de relaciones que pasan cerca del centro del gráfico; ya que al tener los nodos relacionados más cerca, las relaciones pasan a ser más cortas y no deberían cruzar el gráfico. <!-- --Crossing Minimization Problems of Drawing Bipartite Graphs in Two Clusters.pdf-->
 
 ![](media/image7.png)
 
