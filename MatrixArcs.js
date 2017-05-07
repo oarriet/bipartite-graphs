@@ -1,4 +1,8 @@
 var circles = [];
+var latestUs = [];
+var latestVs = [];
+var gridSpacing = 50;
+var canvasSpacing = 55;
 
 function initU() {
     root = [{id:0,x:0,y:0,label:"Lord of the Rings 1",type:1,pos:0,neighbors:[0,1,8]},
@@ -17,7 +21,7 @@ function initU() {
 }
 
 function initV() {
-    root = [{id:0,x:0,y:0,label:"Elijah Wood",type:0,pos:0,neighbors:[0,1,3]},
+    root = [{id:0,x:0,y:0,label:"Elijah Wood",type:0,pos:0,neighbors:[0,3,1]},
         {id:1,x:0,y:0,label:"Orlando Bloom",type:0,pos:0,neighbors:[0,1,2]},
         {id:2,x:0,y:0,label:"Keira Knightley",type:0,pos:0,neighbors:[2,6,8]},
         {id:3,x:0,y:0,label:"Jessica Alba",type:0,pos:0,neighbors:[3]},
@@ -35,41 +39,48 @@ nodesU = initU();
 nodesV = initV();
 
 // Box width
-var bw = nodesU.length * 100;
+var bw = nodesU.length * gridSpacing;
 // Box height
-var bh = nodesV.length * 100;
+var bh = nodesV.length * gridSpacing;
 // Padding
-var p = 200;
+var p = 175;
 
 var canvas = document.getElementById("canvas");
-canvas.width=nodesU.length*125;
-canvas.height=nodesV.length*125;
+canvas.width=nodesU.length*canvasSpacing+p;
+canvas.height=nodesV.length*canvasSpacing+p;
 var context = canvas.getContext("2d");
+
 function drawBoard(){
-    for (var x = 0; x <= bw; x += 100) {
+    for (var x = 0; x <= bw; x += gridSpacing) {
         context.moveTo(0.5 + x + p, p);
         context.lineTo(0.5 + x + p, bh + p);
-        index = x/100;
+        index = x/gridSpacing;
         if(index < nodesV.length){
-            nodeV = nodesV[x/100]
-            context.font = "12px Arial";
-            context.fillText(nodeV.label,20,x+300);
+            nodeV = nodesV[x/gridSpacing];
+            context.font = "10px Arial";
+            context.fillText(nodeV.label,20,x+p+gridSpacing);
             if(nodeV.neighbors && nodeV.neighbors.length > 0){
+                nodeV.neighbors = nodeV.neighbors.sort((a, b) => a - b);
+                latestVs.push(nodeV.neighbors[nodeV.neighbors.length - 1]);
                 for (var i = 0; i <= nodeV.neighbors.length; i++) {
-                    circles.push({x:p+(nodeV.neighbors[i]+1)*100,y:p+(index+1)*100});
+                    circles.push({x:p+(nodeV.neighbors[i]+1)*gridSpacing,y:p+(index+1)*gridSpacing});
                 }
             }
         }
     }
 
-    for (var x = 0; x <= bh; x += 100) {
+
+    for (var x = 0; x <= bh; x += gridSpacing) {
         context.moveTo(p, 0.5 + x + p);
         context.lineTo(bw + p, 0.5 + x + p);
-        if(x/100 < nodesU.length){
+        if(x/gridSpacing < nodesU.length){
+            nodeU = nodesU[x/gridSpacing];
+            nodeU.neighbors = nodeU.neighbors.sort((a, b) => a - b);
+            latestUs.push(nodeU.neighbors[nodeU.neighbors.length - 1]);
             context.save();
             context.rotate( Math.PI / 2 );
-            context.font = "12px Arial";
-            context.fillText(nodesU[x/100].label,50,-300-x);
+            context.font = "10px Arial";
+            context.fillText(nodeU.label,50,-p-gridSpacing-x);
             context.restore();
         }
     }
@@ -79,16 +90,41 @@ function drawBoard(){
 }
 
 drawBoard();
+clearFillClearCircles();
+clearUnusedV();
+clearUnusedU();
 
-for (var i = 0; i < circles.length; i++) {
-    circle = circles[i];
-    context.save();
-    context.beginPath();
-    context.arc(circle.x-10, circle.y-10, 10, 0, 2 * Math.PI, true);
-    context.clearRect(circle.x-10, circle.y-10, 10, 15);
-    context.stroke();
-    context.restore();
-    context.clearRect(circle.x-21, circle.y-21, 10, 21);
-    context.clearRect(circle.x-11, circle.y-21, 11, 12);
-    context.clearRect(circle.x, circle.y-8, 3, 8);
+function clearFillClearCircles(){
+    for (var i = 0; i < circles.length; i++) {
+        circle = circles[i];
+        context.save();
+        context.beginPath();
+        context.arc(circle.x-10, circle.y-10, 10, 0, 2 * Math.PI, true);
+        context.clearRect(circle.x-10, circle.y-10, 10, 15);
+        context.stroke();
+        context.restore();
+        context.clearRect(circle.x-21, circle.y-21, 10, 21);
+        context.clearRect(circle.x-11, circle.y-21, 11, 12);
+        context.clearRect(circle.x, circle.y-8, 3, 8);
+    }
+}
+
+function clearUnusedV(){
+    for(i = 0; i < latestVs.length; i++){
+        for(j = latestVs[i]; j < latestVs.length; j++){
+            context.save();
+            context.clearRect(p+(j+1)*gridSpacing, p+((i+1)*gridSpacing), gridSpacing, 1);
+            context.restore();
+        }
+    }
+}
+
+function clearUnusedU(){
+    for(i = 0; i < latestUs.length; i++){
+        for(j = latestUs[i]; j < latestUs.length; j++){
+            context.save();
+            context.clearRect(p+((i+1)*gridSpacing), p+(j+1)*gridSpacing, 1, gridSpacing);
+            context.restore();
+        }
+    }
 }
