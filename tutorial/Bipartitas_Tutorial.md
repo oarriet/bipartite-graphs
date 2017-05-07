@@ -85,15 +85,25 @@ El grafo bipartita tradicional es el cual sus vértices pueden ser divididos en 
 
 Un dibujo de 2 capas representa un grafo bipatito cuando cada vértice es un punto en alguna de las dos líneas paralelas, ninguno de los vértices en la misma línea es adyacente y las relaciones son segmentos en línea recta.
 
-Una convención típica para dibujar un grafo G es poner los vértices del grupo U en una línea y los vértices del grupo V en una línea paralela y después de esto dibujar las líneas rectas o relaciones entre los vértices que liga el grupo U con el el grupo V. <!-- @Eades1994 -->
+Una convención típica para dibujar un grafo G es poner los vértices del grupo U en una línea y los vértices del grupo V en una línea paralela y después de esto dibujar las líneas rectas o relaciones entre los vértices que liga el grupo U con el el grupo V (Figura \ref{fig:verticesUyV}).  <!-- @Eades1994 -->
 
-![](media/image1.png)
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image1.png}}
+ \caption{Vértices en Grupos U y V}
+ \label{fig:verticesUyV}
+\end{figure}
 
-El objetivo de dibujar un grafo bipartita con la técnica de dos capas es mejorar la visualización por medio de relaciones directas, las cuales son más intuitivas al ojo y razonamiento humano. Cualquier grafo bipartita (a) puede ser dibujado por convertido a un plano de dos capas (b) por medio de esta técnica.
+Como se puede observar en la Figura \ref{fig:relDirectas}: El objetivo de dibujar un grafo bipartita con la técnica de dos capas es mejorar la visualización por medio de relaciones directas, las cuales son más intuitivas al ojo y razonamiento humano. Cualquier grafo bipartita (a) puede ser dibujado por convertido a un plano de dos capas (b) por medio de esta técnica.
 
-![](media/image2.png)
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image2.png}}
+ \caption{Relaciones directas.}
+ \label{fig:relDirectas}
+\end{figure}
 
-El algoritmo para crear un grafo de dos capas es bastante sencillo, el mismo sigue esta lógica: <!--On the one-sided crossing minimization in a bipartite graph with large degrees -->
+El algoritmo para crear un grafo de dos capas es bastante sencillo, el mismo sigue esta lógica (se puede observar el resultado final en la Figura \ref{fig:graficoTwoLayer}): <!--On the one-sided crossing minimization in a bipartite graph with large degrees -->
 
 1.  Se toman todos elementos del primer set (Grupo U) y se ordenan en una línea recta, ya sea horizontal o vertical.
 
@@ -111,13 +121,25 @@ El algoritmo para crear un grafo de dos capas es bastante sencillo, el mismo sig
 
     c.  Se repite por cada elemento ‘u’.
 
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image10.png}}
+ \caption{Gráfico obtenido con nuestro algoritmo.}
+ \label{fig:graficoTwoLayer}
+\end{figure}
+
 Entre los casos de investigación más importantes acerca de este tipo de grafos se buscan los algoritmos dónde se puede evitar la mayor cantidad de cruces<!-- F. Harary, A.J. Schwenk, Trees with Hamiltonian square, Mathematiks 18 (1971) 138–140
 F. Harary, A.J. Schwenk, A new crossing number for bipartite graphs, Utilitas Math. 1 (1972) 203–209
 --> entre las relaciones por medio del ordenamiento de los nodos en el grupo U, así como de optimizar las relaciones entre ambos grupos para asignaciones directas (Matching).<!-- Hopcroft, John E.; Karp, Richard M. (1973), "An n5/2 algorithm for maximum matchings in bipartite graphs" -->
 
-En el caso del Matching o Emparejamiento es una de las aplicaciones más comunes cuando se tiene Grafos Bipartitas dibujados en forma de dos capas. La definición de emparejamiento obtener un conjunto de relaciones donde ningún par tenga el mismo vértice en común. Si el emparejamiento contiene la mayor cantidad de relaciones entonces podemos decir que es un emparejamiento máximo. Cabe aclarar que el emparejamiento no quiere decir que todos los vértices tengan que estar relacionados con otro, sino que haya la mayor cantidad de relaciones.<!-- Emparejamientos.pdf -->
+En el caso del Matching o Emparejamiento (Figura \ref{fig:ejemploMatching}) es una de las aplicaciones más comunes cuando se tiene Grafos Bipartitas dibujados en forma de dos capas. La definición de emparejamiento obtener un conjunto de relaciones donde ningún par tenga el mismo vértice en común. Si el emparejamiento contiene la mayor cantidad de relaciones entonces podemos decir que es un emparejamiento máximo. Cabe aclarar que el emparejamiento no quiere decir que todos los vértices tengan que estar relacionados con otro, sino que haya la mayor cantidad de relaciones.<!-- Emparejamientos.pdf -->
 
-![](media/image3.png)
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image3.png}}
+ \caption{Ejemplo de Matching.}
+ \label{fig:ejemploMatching}
+\end{figure}
 
 Por ejemplo en el grafo G1 el emparejamiento es de un tamaño de 3, pero en el G2 se puede observar una emparejamiento de tamaño 4. En G2 no se deja ningún nodo libre, por lo que se llama Emparejamiento completo, el cuál también es máximo y sólo se puede conseguir cuando la cantidad de vértices entre los dos planos es la misma.
 
@@ -125,17 +147,20 @@ Un ejemplo de uso de matchings o emparejamientos son los sitios para búsqueda d
 
 ## Incrustación Esférica (Spherical Embedding)
 
-El algoritmo de incrustación esférica (SE por sus siglas en inglés) fue diseñado principalmente para visualización de grafos bipartitas. Los ítems de los dos grupos U y V son representados por medio de nodos posicionados en dos círculos concéntricos. Los ítems del grupo U son mapeados en el círculo interior y los ítems del grupo V son mapeados en el círculo exterior con un radio del doble del círculo interno. El propósito de este gráfico es posicionar los nodos de una manera que los items similares estén lo más cerca posible en cada uno de sus respectivos círculos. La siguiente figura muestra el proceso de construcción de un grafo bipartita y su visualización utilizando el algoritmo de incrustación esférica. <!-- 3D-SE viewer - A Text Mining Tool based on Bipartite Graph Visualization-->
+El algoritmo de incrustación esférica (SE por sus siglas en inglés) fue diseñado principalmente para visualización de grafos bipartitas. Los ítems de los dos grupos U y V son representados por medio de nodos posicionados en dos círculos concéntricos. Los ítems del grupo U son mapeados en el círculo interior y los ítems del grupo V son mapeados en el círculo exterior con un radio del doble del círculo interno. El propósito de este gráfico es posicionar los nodos de una manera que los items similares estén lo más cerca posible en cada uno de sus respectivos círculos. La Figura \ref{fig:transSE} muestra el proceso de construcción de un grafo bipartita y su visualización utilizando el algoritmo de incrustación esférica. <!-- 3D-SE viewer - A Text Mining Tool based on Bipartite Graph Visualization-->
 
-![](media/image6.png)
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image6.png}}
+ \caption{Transformación de Gráficos Bipartitas a SE.}
+ \label{fig:transSE}
+\end{figure}
 
 Para conseguir esta visualización buscamos las coordenadas de los nodos del gráfico {xi,i = 1,...,|U| + |V|} que minimicen la distancia entre las relaciones (E) entre todos los pares de nodos. En algunos artículos esta minimización es realizada por medio de un procedimiento de descenso de gradiente la cual tiene un complejidad matemática avanzada por lo que hemos decido realizar este cálculo por medio de una heurística baricéntrica.
 
 Básicamente la heurística baricéntrica utilizada en el ejemplo intenta acercar los nodos relacionados entre sí, tanto en el círculo interior como en el exterior. Una forma de visualizar que esto se logra es ver la reducción de relaciones que pasan cerca del centro del gráfico; ya que al tener los nodos relacionados más cerca, las relaciones pasan a ser más cortas y no deberían cruzar el gráfico. <!-- --Crossing Minimization Problems of Drawing Bipartite Graphs in Two Clusters.pdf-->
 
-![](media/image7.png)
-
-El algoritmo para dibujar este tipo de grafos es el siguiente:
+El algoritmo para dibujar este tipo de grafos es el siguiente (se puede observar el resultado final en la Figura \ref{fig:graficoSE}):
 
 1. Dibujar el círculo interno:
 
@@ -189,6 +214,13 @@ El algoritmo para dibujar este tipo de grafos es el siguiente:
 
 7. Se trazan las relaciones entre los nodos.
 
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image7.png}}
+ \caption{Gráfico obtenido con nuestro algoritmo.}
+ \label{fig:graficoSE}
+\end{figure}
+
 ## Mapa anclado (Anchored Map)
 
 La técnica del mapa anclado tiene dos tipos de nodo, los nodos anclados y los nodos libres. Los nodos anclados son ordenados en la circunferencia a distancias iguales y los nodos libres son ubicados en posiciones con relación de cercanía a los nodos anclados. El problema que esta técnica busca solucionar es tratar de decidir el orden de los anclados en la circunferencia y la posición de los nodos libres. Utilizando esta técnica no se debe de preocupar por la ruta entre las relaciones porque siempre se utiliza una línea recta.<!-- Drawing Bipartite Graphs as Anchored Maps-->
@@ -197,13 +229,23 @@ A continuación vamos a describir la técnica propuesta para dibujar mapas ancla
 
 Los mapas anclados restringen la posición de algunos nodos pero permite que otros nodos sean ordenados libremente. Los nodos restringidos son los llamados “anclas” y los demás son los nodos “libres”.
 
-Hay muchas variaciones en la restricción de los nodos anclas. La más simple es que cada ancla está fijo en una coordenada, también es posible restringir las anclas en una curva, en un área, etc. En la siguiente figura podemos ver varios tipos de técnicas para dibujar un grafo bipartita.
+Hay muchas variaciones en la restricción de los nodos anclas. La más simple es que cada ancla está fijo en una coordenada, también es posible restringir las anclas en una curva, en un área, etc. En la Figura \ref{fig:varBipartitas} podemos ver varios tipos de técnicas para dibujar un grafo bipartita.
 
-![](media/image4.png)
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image4.png}}
+ \caption{Variaciones de Gráficos Bipartitas.}
+ \label{fig:varBipartitas}
+\end{figure}
 
-Y en el siguiente dibujo podemos ver cómo se ve un el mismo grafo bipartita dibujado como mapa anclado. Los nodos principales representados por la letra C son arreglados en forma de pentágono, y los nodos M son ordenados en una posición donde se pueda interpretar su relación con C. Como se puede observar: la distinción de nodos es más clara que en los gráficos anteriores.
+Y en el siguiente dibujo podemos ver cómo se ve un el mismo grafo bipartita dibujado como mapa anclado. Los nodos principales representados por la letra C son arreglados en forma de pentágono, y los nodos M son ordenados en una posición donde se pueda interpretar su relación con C. Como se puede observar en la Figura \ref{fig:ejemploMapaAnclado}: la distinción de nodos es más clara que en los gráficos anteriores.
 
-![](media/image5.png)
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image5.png}}
+ \caption{Ejemplo de Mapa Anclado ordenado.}
+ \label{fig:ejemploMapaAnclado}
+\end{figure}
 
 La convención para dibujar este tipo de grafos como mapas anclados es así:
 
@@ -215,7 +257,7 @@ La convención para dibujar este tipo de grafos como mapas anclados es así:
 
 Siguiendo estas convenciones se puede observar claramente la afinidad de los nodos libres a cada uno de los nodos anclados. Además de poder ver grupos de nodos libres más cercanos entre ellos, lo que demuestra una afinidad entre ellos pero que no es explícita por el grafo bipartita o la información cruda.
 
-El algoritmo para dibujar este tipo de grafos es el siguiente:
+El algoritmo para dibujar este tipo de grafos es el siguiente (se puede observar el resultado final en la Figura \ref{fig:graficoMapaAnclado}):
 
 1.  Ordenar las anclas en intervalos iguales.
 
@@ -241,10 +283,71 @@ El algoritmo para dibujar este tipo de grafos es el siguiente:
 
 Como se puede ver en el algoritmo anterior los mayores cálculo matemáticos son ejecutados en encontrar la penalidad de cada par de anclas del mapa y después en la atracción de cada nodo libre contra las anclas.
 
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image9.png}}
+ \caption{Gráfico obtenido con nuestro algoritmo.}
+ \label{fig:graficoMapaAnclado}
+\end{figure}
+
 ## Arcos en Matriz (Matrix Arcs)
 
 # Algoritmos de visualización propuestos
 
 ## Sierra
+
+El algoritmo para dibujar este tipo de grafos es el siguiente (se puede observar el resultado final en la Figura \ref{fig:graficoSierra}):
+
+El grupo U se colocará flotando dependiendo del valor de Y y el grupo V se colocará sobre el eje X con un valor de Y = 0 siempre.
+
+1. Se ordenan los nodos U de mayor cantidad de vecinos a menor cantidad de vecinos.
+
+2. Se calculan las coordenadas de grupo V:
+
+    a. Se calcula el espacio horizontal entre nodos = largo de canvas / cantidad de nodos.
+
+    b. xActual = 0
+
+    c. Por cada nodo en V:
+        i. xActual = xActual + espacio entre nodos.
+
+        ii. Al valor X del nodo = xActual.
+
+        iii. Al valor Y del nodo = 0.
+
+3. Se calcula las coordenadas de grupo U:
+
+    a. Se calcula el espacio vertical entre nodos = alto del canvas / cantidad de nodos con diferente número de vecinos.
+
+    b. CantidadVecinosActual = cantidad de vecinos de nodo U[0].
+
+    c. yActual = valor más alto del canvas.
+
+    d. Por cada nodo en U (ordenado):
+
+        i. Si CantidadVecinosActual != cantidad vecinos de nodo.
+
+            1. CantidadVecinosActual = cantidad vecinos de nodo.
+
+            2. yActual = yActual + espacioVertical.
+
+        ii. Aplica cálculo baricentrico de nodo U.
+
+            1. Se calcula el promedio de coodenadas entre el hijo vecino y el vecino derecho para que el nodo U quede en medio y se forme un triángulo (sierra).
+
+        iii. Al valor X del nodo = cálculo baricéntrico.
+
+        iv. Al valor Y del nodo = yActual.
+
+4. Por cada nodo en U:
+
+    a. Se dibujan y pintan las sierras. En caso que sea sólo un vecino se pinta un pino.
+
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image8.png}}
+ \caption{Gráfico obtenido con nuestro algoritmo.}
+ \label{fig:graficoSierra}
+\end{figure}
 
 # \spanishbibname
