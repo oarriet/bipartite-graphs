@@ -109,7 +109,37 @@ El algoritmo para crear un grafo de dos capas es bastante sencillo, el mismo sig
 
 2.  Se toman todos los elementos del segundo set (Grupo V) y se ordenan en una línea recta completamente paralela a la línea del primer set (Grupo U).
 
-3.  Por cada elemento en el Grupo U al que llamaremos ‘u’
+3. Se calcula la heurística baricéntrica de cada nodo.
+
+    a. n = cantidad de nodos U
+
+    b. Se repite (n x 2) cantidad de veces:
+
+        i. Por cada nodo U:
+
+            1. Se obtiene la posición del nodo U.
+
+            2. Se obtiene las posiciones de todos los vecinos del nodo U.
+
+            3. Se calcula promedio de las posiciones de vecinos
+
+            4. Se asigna al nodo U ese promedio.
+
+        ii. Se ordenan los nodos U según promedio.
+
+        iii. Por cada nodo V:
+
+            1. Se obtiene la posición del nodo V.
+
+            2. Se obtiene las posiciones de todos los vecinos del nodo V.
+
+            3. Se calcula promedio de las posiciones de vecinos
+
+            4. Se asigna al nodo V ese promedio.
+
+        iv. Se ordenan los nodos V según promedio.
+
+4.  Por cada elemento en el Grupo U al que llamaremos ‘u’
 
     a.  Se obtiene la lista de relaciones del elemento ‘u’ hacia los elementos ‘v’
 
