@@ -86,7 +86,7 @@ function setUCoordenates(nodesU, nodesV, drawHeight) {
         }
 
         var averageX = getAverageX(nodesU[i].neighbors, nodesV);
-        while (checkRepeatedX(nodesU, averageX)){
+        while (nodesU[i].neighbors.length > 1 && checkRepeatedX(nodesU, averageX)){
             averageX += 10;
         }
 
@@ -206,12 +206,13 @@ function drawSierras(draw, drawHeight, nodesU, nodesV) {
         if (nodesU[i].neighbors.length == 1){
             draw.beginPath();
             draw.moveTo(nodesU[i].x, nodesU[i].y);
-            draw.lineTo(getFarLeft(nodesU[i].neighbors, nodesV), drawHeight - BOTTOM_SPACE);
+            draw.lineTo(nodesU[i].x - 5, drawHeight - BOTTOM_SPACE);
+            draw.lineTo(nodesU[i].x + 5, drawHeight - BOTTOM_SPACE);
             draw.closePath();
 
-            draw.lineWidth = 10;
-            draw.strokeStyle="#614126";
             draw.stroke();
+            draw.fillStyle = "#614126";
+            draw.fill();
         } else {
             draw.beginPath();
             draw.moveTo(nodesU[i].x, nodesU[i].y);
@@ -221,7 +222,6 @@ function drawSierras(draw, drawHeight, nodesU, nodesV) {
 
             draw.lineWidth = 2;
             draw.stroke();
-
             draw.fillStyle = colorLuminance("#556B2F", lumPercentage/100);
             draw.fill();
 
