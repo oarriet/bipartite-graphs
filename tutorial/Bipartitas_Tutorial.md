@@ -344,9 +344,64 @@ Como se puede ver en el algoritmo anterior los mayores cálculo matemáticos son
 
 ## Arcos en Matriz (Matrix Arcs)
 
-# Algoritmos de visualización propuestos
+# Algoritmos de visualización propuesto
 
 ## Sierra
+
+### Descripción
+
+Después de investigar sobre todas las formas de visualizar grafos bipartitas existentes, hemos llegado algunas conclusiones preliminares que nos ayudaron en la creación de los grafos Sierra.
+
+Uno de los principales aspectos en contra de los grafos bipartitas es la rápida lectura de las relaciones y cada uno de los nodos. Por ejemplo en el Mapa Anclado o en la Incrustación Esférica es sumamente complicado ubicar cada descripción del nodo (en nuestro caso los actores o películas) y todavía es un poco más confuso entender la relación entre ellos, aún cuando ya se hayan ordenado.
+
+Otro de los apuntes negativos es el estilo poco estético que se maneja como una estándar (no escrito) a la hora de dibujar los grafos bipartitas.
+
+Por estas razones nos propusimos crear una nueva visualización de este tipo de grafos pero sin inventar el agua tibia, conservando las características positivas de cada uno de los estilos estudiados. Algunas de estas características son:
+
+1. El uso de dos ejes, al estilo de los Gráficos de Dos Capas, pero en nuestro caso se interpretan como x,y en un plano cartesiano. Esto para mejor comprensión de los datos y del algoritmo. Planos cartesianos es parte del álgebra básica y creemos que facilitará su entendimiento a los usuarios.
+2. El uso de un ordenamiento baricéntrico pero enfocado solamente a uno de los grupos del grafo, el grupo de nodos U.
+3. Las relaciones se detallarán por medio de líneas punteadas para no saturar el gráfico y simplificar su lectura.
+4. La última característica principal la forma o estilo del dibujo. Los autores nacidos en Costa Rica, un país repleto de vegetación y montañas. Queremos así darle un poco de color y naturalidad a los datos que se evalúan. Por esto decidimos tratar de emular las sierras/montañas y sus bosques.
+
+### Proceso de contrucción y diseño
+
+1. Figura \ref{fig:sierra1}: Se acomodan las nodos U flotando en el eje Y y los nodos V sobre el eje X. Todos los nodos tiene distancias iguales entre sí calculadas en el algoritmo.
+
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/Sierra1.png}}
+ \caption{Nodos U (flotando) y V (eje X).}
+ \label{fig:sierra1}
+\end{figure}
+
+2. Figura \ref{fig:sierra2}: Se ordenan las nodos U dependiendo de la cantidad de vecinos, entre más vecinos más alta la sierra. Si 2 o más nodos U coinciden en la misma coordenada X entonces se distribuyen para una mejor lectura de los datos (en nuestro caso el nombre de película).
+
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/Sierra2.png}}
+ \caption{Nodos U ordenados por cantidad de vecinos.}
+ \label{fig:sierra2}
+\end{figure}
+
+3. Figura \ref{fig:sierra3}: Se colorean las sierras, de un verde más oscuro a un verde más claro dependiendo de la altura (cantidad de vecinos) y los nodos U que tienen solamente 1 vecino se colorean café para emular un pino.
+
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/Sierra3.png}}
+ \caption{Tonos verdes y café del dibujo.}
+ \label{fig:sierra3}
+\end{figure}
+
+4. Figura \ref{fig:sierra4}: Se dibujan las relaciones con linea punteada para mejor comprensión del gráfico en general.
+
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/Sierra4.png}}
+ \caption{Relaciones con linea punteada.}
+ \label{fig:sierra4}
+\end{figure}
+
+### Algoritmo
 
 El algoritmo para dibujar este tipo de grafos es el siguiente (se puede observar el resultado final en la Figura \ref{fig:graficoSierra}):
 
