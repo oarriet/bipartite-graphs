@@ -350,15 +350,22 @@ Para cada nodo del conjunto "V" se debe determinar en su eje el último punto de
 
 La identificación de las relaciones una vez la matriz está completa es sencilla, pues las líneas nos llevan de un nodo a todas sus contrapartes en el conjunto contrario.
 
-### Algoritmo
+El algoritmo para dibujar este tipo de grafos es el siguiente (se puede observar el resultado final en la Figura \ref{fig:graficoArcos}):
 
 1. Con base en la cantidad elementos de cada conjunto se calculan el largo y ancho de la matriz para el dibujado inicial de la cuadrícula total.
 
-2. Se iteran por separado los conjuntos. En cada iteración del primer conjunto se determinan los arcos a dibujar. Además se ordena y guarda el último nodo de relación en su conjunto contrario (esto sí aplica para ambos conjuntos). 
+2. Se iteran por separado los conjuntos. En cada iteración del primer conjunto se determinan los arcos a dibujar. Además se ordena y guarda el último nodo de relación en su conjunto contrario (esto sí aplica para ambos conjuntos).
 
 3. Una vez la cuadrícula está completa se dibujan los arcos, para esto se dibuja un círculo completo y se elimina posteriormente lo que no conforma el arco de la relación entre los nodos.
 
 4. Finalmente se eliminan las líneas de la cuadrícula a partir de la última relación de los conjuntos para cada nodo.
+
+\begin{figure}[h]
+ \centering
+ \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image11.png}}
+ \caption{Gráfico obtenido con nuestro algoritmo.}
+ \label{fig:graficoArcos}
+\end{figure}
 
 
 # Algoritmos de visualización propuesto
@@ -409,14 +416,7 @@ Por estas razones nos propusimos crear una nueva visualización de este tipo de 
  \label{fig:sierra3}
 \end{figure}
 
-4. Figura \ref{fig:sierra4}: Se dibujan las relaciones con linea punteada para mejor comprensión del gráfico en general.
-
-\begin{figure}[h]
- \centering
- \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/Sierra4.png}}
- \caption{Relaciones con linea punteada.}
- \label{fig:sierra4}
-\end{figure}
+4. Figura \ref{fig:graficoSierra}: Se dibujan las relaciones con linea punteada para mejor comprensión del gráfico en general.
 
 ### Algoritmo
 
