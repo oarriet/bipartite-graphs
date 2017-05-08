@@ -344,6 +344,23 @@ Como se puede ver en el algoritmo anterior los mayores cálculo matemáticos son
 
 ## Arcos en Matriz (Matrix Arcs)
 
+En esta técnica se visualizan los conjuntos en un eje de coordenadas "X" y "Y", formando una matriz, en la que los nodos se reparten en los ejes, con base en las relaciones de estos con respecto al otro conjunto del grafo se denota una curva en ese punto de intersección en lugar de el cierre cuadricular normal de la matriz.
+
+Para cada nodo del conjunto "V" se debe determinar en su eje el último punto de relación con respecto a los elementos del conjunto "U" (y viceversa) y eliminar las líneas restantes de la cuadrícula.
+
+La identificación de las relaciones una vez la matriz está completa es sencilla, pues las líneas nos llevan de un nodo a todas sus contrapartes en el conjunto contrario.
+
+### Algoritmo
+
+1. Con base en la cantidad elementos de cada conjunto se calculan el largo y ancho de la matriz para el dibujado inicial de la cuadrícula total.
+
+2. Se iteran por separado los conjuntos. En cada iteración del primer conjunto se determinan los arcos a dibujar. Además se ordena y guarda el último nodo de relación en su conjunto contrario (esto sí aplica para ambos conjuntos). 
+
+3. Una vez la cuadrícula está completa se dibujan los arcos, para esto se dibuja un círculo completo y se elimina posteriormente lo que no conforma el arco de la relación entre los nodos.
+
+4. Finalmente se eliminan las líneas de la cuadrícula a partir de la última relación de los conjuntos para cada nodo.
+
+
 # Algoritmos de visualización propuesto
 
 ## Sierra
