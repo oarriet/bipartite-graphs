@@ -501,6 +501,8 @@ Sobre el algoritmo llamado Sierra que estamos proponiendo podemos asegurar que t
 
 Algunas de las mejoras que se le pueden implementar son el ordenamiento de los nodos del grupo V (sobre eje X) y así poder percibir de mejor manera la relación entre cada grupo. Las sierras quedarían una más cerca de la otra en caso de tener nodos compartidos pero además se le sumaría la altura y el color como forma de interpretar la cantidad de nodos.
 
+Sobre el grafo de matriz con arcos, es una estructura muy explicíta, natural para quien analice la información. Un eje de coordendas que siempre permite hallar de manera inmediata las relaciones de los nodos (eje X y su contraparte en eje Y). La limpieza de la cuadrícula cuando se obtienen los máximos o últimos nodos de relación crean un grafo más limpio para su análisis. Si bien en primera instancia no se hace ningún ordenamiento a los datos de entrada (como en los otros algoritmos vistos) sería interesante comprobar alguna mejora de tipo promedio de los nodos relacionados o conforme al último nodo de relación para tratar de comprobar si el diseño final se puede mejorar.
+
 Dicho todo esto algunas de las conclusiones principales sobre los grafos bipartitas y sus métodos son las siguientes:
 
 1. Existe muy poco investigación acerca de este tipo de grafos, lo que brinda un enorme espacio para trabajos posteriores y nuevas técnicas.
