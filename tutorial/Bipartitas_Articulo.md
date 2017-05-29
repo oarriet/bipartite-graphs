@@ -1,8 +1,9 @@
 ---
 title: Dibujando Grafos Bipartitas como Sierras
 author:
-- Oscar Arrieta / Jason Ocampo
-- Escuela de Informática, Universidad Nacional, Heredia, Costa Rica
+  - Oscar Arrieta / Jason Ocampo
+  - Escuela de Informática, Universidad Nacional, Heredia, Costa Rica
+header-includes:
 abstract: Un método para dibujar grafos bipartitas como Sierras es expuesto. Supongamos que existen dos grupos de nodos, U y V. Una Sierra va a ordenar los nodos del grupo V en el piso y los nodos del grupo U en una altura dependiendo de la cantidad de relaciones de ese nodo con el otro grupo. Además se dibujan triángulos para ejemplificar las montañas y se colorean de un tono verde dependiendo del tamaño. Este artículo explica el criterio estético y expone un algoritmo para poder dibujar cualquier grafo bipartita de esta manera. El rendimiento y objetivo son mencionados en las conclusiones.
 keywords: grafo bipartita, sierra, dibujo de grafo
 bibliography: bibliografia.bib
@@ -18,15 +19,15 @@ El modelo más común de grafos bipartitos es tal vez tener dos niveles horizont
 
 ## Áreas de aplicación
 
-Los gráficos bipartitos se utilizan ampliamente en la teoría de codificación, principalmente para decodificar las palabras de código. Los gráficos de factores y los gráficos de Tanner son ejemplos de esto, este último es un gráfico bipartito en el que los vértices de un lado de la bipartición representan dígitos de una palabra de código y los vértices del otro lado representan combinaciones de dígitos que se espera sumar a cero en una palabra de código sin errores.
+Los gráficos bipartitos se utilizan ampliamente en la teoría de codificación, principalmente para decodificar las palabras de código. Los gráficos de factores y los gráficos de Tanner [@R2015] son ejemplos de esto, este último es un gráfico bipartito en el que los vértices de un lado de la bipartición representan dígitos de una palabra de código y los vértices del otro lado representan combinaciones de dígitos que se espera sumar a cero en una palabra de código sin errores.
 
-Otro ejemplo a nivel informático son las redes de Petri, herramientas de modelado matemático utilizado en el análisis y simulaciones de sistemas concurrentes. Un sistema es modelado como un grafo bipartito dirigido con dos conjuntos de nodos: Un conjunto de nodos "lugar" que contienen recursos y un conjunto de nodos "evento" que generan y / o consumen recursos.
+Otro ejemplo a nivel informático son las redes de Petri [@Kibria], herramientas de modelado matemático utilizado en el análisis y simulaciones de sistemas concurrentes. Un sistema es modelado como un grafo bipartito dirigido con dos conjuntos de nodos: Un conjunto de nodos "lugar" que contienen recursos y un conjunto de nodos "evento" que generan y / o consumen recursos.
 
-En la geometría proyectiva, los gráficos de Levi son una forma de gráfico bipartito utilizado para modelar las incidencias entre puntos y líneas en una configuración. Correspondiendo a la propiedad geométrica de puntos y líneas que cada dos líneas se encuentran en un punto y cada dos puntos se conectan con una sola línea.
+En la geometría proyectiva, los gráficos de Levi [@Grunbaum2009] son una forma de gráfico bipartito utilizado para modelar las incidencias entre puntos y líneas en una configuración. Correspondiendo a la propiedad geométrica de puntos y líneas que cada dos líneas se encuentran en un punto y cada dos puntos se conectan con una sola línea.
 
-El trabajo en BIGSIR utiliza los datos de uso histórico de los servicios web para recomendar servicios web a los desarrolladores. Diferente de los enfoques existentes de recomendación de servicio web, BIGSIR adopta un gráfico bipartito para visualizar los servicios web y la relación entre ellos.
+El trabajo en BIGSIR [@R2015] utiliza los datos de uso histórico de los servicios web para recomendar servicios web a los desarrolladores. Diferente de los enfoques existentes de recomendación de servicio web, BIGSIR adopta un gráfico bipartito para visualizar los servicios web y la relación entre ellos.
 
-A nivel de protección de servidores de aplicaciones encontramos el uso de un algoritmo bipartito. Los IDS (Intrusion Detection Systems) monitorean y registran las peticiones capturando los eventos de red (alertas o actividades sospechosas) en un conjunto de datos multidimensional que almacena el origen, el tiempo y la naturaleza de cada evento. Aquí entra en juego el algoritmo AlertWheel el cual utiliza una visualización radial, y también muestra la ubicación, tiempo y naturaleza de muchos eventos a la vez. La visualización de tales ataques es útil para los analistas de red durante el brote de una infección virulenta Malware en Internet.
+A nivel de protección de servidores de aplicaciones encontramos el uso de un algoritmo bipartito. Los IDS (Intrusion Detection Systems) [@Dumas2006] monitorean y registran las peticiones capturando los eventos de red (alertas o actividades sospechosas) en un conjunto de datos multidimensional que almacena el origen, el tiempo y la naturaleza de cada evento. Aquí entra en juego el algoritmo AlertWheel el cual utiliza una visualización radial, y también muestra la ubicación, tiempo y naturaleza de muchos eventos a la vez. La visualización de tales ataques es útil para los analistas de red durante el brote de una infección virulenta Malware en Internet.
 
 # Antecedentes
 
@@ -61,22 +62,26 @@ Una convención típica para dibujar un grafo G es poner los vértices del grupo
  \label{fig:verticesUyV}
 \end{figure}
 
-El objetivo de dibujar un grafo bipartita con la técnica de dos capas es mejorar la visualización por medio de relaciones directas, las cuales son más intuitivas al ojo y razonamiento humano. Cualquier grafo bipartita puede ser dibujado por convertido a un plano de dos capas por medio de esta técnica.
+El beneficio de dibujar un grafo bipartita con la técnica de dos capas es mejorar la visualización por medio de relaciones directas, las cuales son más intuitivas al ojo y razonamiento humano. Cualquier grafo bipartita puede ser dibujado por convertido a un plano de dos capas por medio de esta técnica.
 
 ## Incrustación Esférica (Spherical Embedding)
 
-El algoritmo de incrustación esférica (SE por sus siglas en inglés) fue diseñado principalmente para visualización de grafos bipartitas[@Usui2007]. Los ítems de los dos grupos U y V son representados por medio de nodos posicionados en dos círculos concéntricos. Los ítems del grupo U son mapeados en el círculo interior y los ítems del grupo V son mapeados en el círculo exterior con un radio del doble del círculo interno. El propósito de este gráfico es posicionar los nodos de una manera que los items similares estén lo más cerca posible en cada uno de sus respectivos círculos. La Figura \ref{fig:transSE} muestra el proceso de construcción de un grafo bipartita y su visualización utilizando el algoritmo de incrustación esférica.
+El algoritmo de incrustación esférica (SE por sus siglas en inglés) fue diseñado principalmente para visualización de grafos bipartitas[@Usui2007]. Los ítems de los dos grupos U y V son representados por medio de nodos posicionados en dos círculos concéntricos. Los ítems del grupo U son mapeados en el círculo interior y los ítems del grupo V son mapeados en el círculo exterior con un radio del doble del círculo interno. El propósito de este gráfico es posicionar los nodos de una manera que los items similares estén lo más cerca posible en cada uno de sus respectivos círculos. La Figura \ref{fig:transSE} muestra el proceso de optimización desde los datos un grafo bipartita a su visualización utilizando el algoritmo de incrustación esférica después de ser ordenados por el algoritmo.
 
 \begin{figure}[h]
  \centering
  \includegraphics[width=0.5\textwidth]{media/image6.png}
- \caption{Transformación de Gráficos Bipartitas a SE.}
+ \caption{Optimización de Gráficos Bipartitas a SE.}
  \label{fig:transSE}
 \end{figure}
 
 Para conseguir esta visualización buscamos las coordenadas de los nodos del gráfico {xi,i = 1,...,|U| + |V|} que minimicen la distancia entre las relaciones (E) entre todos los pares de nodos. En algunos artículos esta minimización es realizada por medio de un procedimiento de descenso de gradiente la cual tiene un complejidad matemática avanzada por lo que hemos decido realizar este cálculo por medio de una heurística baricéntrica.
 
 Básicamente la heurística baricéntrica utilizada en el ejemplo intenta acercar los nodos relacionados entre sí, tanto en el círculo interior como en el exterior. Una forma de visualizar que esto se logra es ver la reducción de relaciones que pasan cerca del centro del gráfico; ya que al tener los nodos relacionados más cerca, las relaciones pasan a ser más cortas y no deberían cruzar el gráfico. [@Zheng2005]
+
+La incrustación esférica (SE) muestra una interesante capacidad de visualización de grafos bipartitas por medio de dos esferas. Después de varios grupos de datos hemos observado que los mejores diseños son obtenidos cuando el grafo es balanceado, lo que quiere decir que el número de ítems en cada uno de los grupos tienen el mismo rango. También encontramos casos cuando los nodos son colocados uniformemente gracias a que las relaciones entre los nodos están uniformemente distribuidos en el gráfico. Esto significa que el número de relaciones conectando cada nodo no debe de variar mucho entre los grupo, de otro modo veremos áreas limpias o en blanco en cada esfera. Es un efecto que los creadores llamaron el “efecto hueco” y asumen que probablemente relacionado a las propiedades de densidad del gráfico.
+
+Otro de los beneficios del SE es su rapidez ya que puede procesar miles de nodos en pocos segundos. Algunos de los usos que los autores proponen es la visualización de datos proveniente de investigaciones en instituciones donde se analiza mucha información, por ejemplo indexar términos de documentos en una base de datos de neurociencia. [@Usui2007]
 
 ## Mapa anclado (Anchored Map)
 
@@ -86,16 +91,9 @@ A continuación vamos a describir la técnica propuesta para dibujar mapas ancla
 
 Los mapas anclados restringen la posición de algunos nodos pero permite que otros nodos sean ordenados libremente. Los nodos restringidos son los llamados “anclas” y los demás son los nodos “libres”.
 
-Hay muchas variaciones en la restricción de los nodos anclas. La más simple es que cada ancla está fijo en una coordenada, también es posible restringir las anclas en una curva, en un área, etc. En la Figura \ref{fig:varBipartitas} podemos ver varios tipos de técnicas para dibujar un grafo bipartita.
+Hay muchas variaciones en la restricción de los nodos anclas. La más simple es que cada ancla está fijo en una coordenada, también es posible restringir las anclas en una curva, en un área, etc.
 
-\begin{figure}[h]
- \centering
- \includegraphics[width=0.5\textwidth]{media/image4.png}
- \caption{Variaciones de Gráficos Bipartitas.}
- \label{fig:varBipartitas}
-\end{figure}
-
-Y en el siguiente dibujo podemos ver cómo se ve un el mismo grafo bipartita dibujado como mapa anclado. Los nodos principales representados por la letra C son arreglados en forma de pentágono, y los nodos M son ordenados en una posición donde se pueda interpretar su relación con C. Como se puede observar en la Figura \ref{fig:ejemploMapaAnclado}: la distinción de nodos es más clara que en los gráficos anteriores.
+Y en el siguiente dibujo podemos ver cómo se ve un el mismo grafo bipartita dibujado como mapa anclado. Los nodos principales son arreglados en forma de polígono, y los otros nodos son ordenados en una posición donde se pueda interpretar su relación con el polígono. Como se puede observar en la Figura \ref{fig:ejemploMapaAnclado}: la distinción de nodos es más clara que en los gráficos anteriores.
 
 \begin{figure}[h]
  \centering
@@ -103,6 +101,8 @@ Y en el siguiente dibujo podemos ver cómo se ve un el mismo grafo bipartita dib
  \caption{Ejemplo de Mapa Anclado ordenado.}
  \label{fig:ejemploMapaAnclado}
 \end{figure}
+
+Respecto a los mapas anclados, los autores proponen y exponen esa técnica pero están preocupados por la lógica de ordenamiento de los nodos anclados. Existe una penalidad basada en los espacios entre nodos anclados relacionados con el mismo nodo libre. Proponen trabajar en un algoritmo más eficiente para manejar este caso pero están seguros que el algoritmo propuesto llega a brindar otra forma de analizar la información. [@Misue2006]
 
 ## Arcos en Matriz (Matrix Arcs)
 
@@ -118,6 +118,8 @@ La identificación de las relaciones una vez la matriz está completa es sencill
  \caption{Gráfico obtenido con nuestro algoritmo.}
  \label{fig:graficoArcos}
 \end{figure}
+
+Sobre el grafo de matriz con arcos, es una estructura muy explicíta, natural para quien analice la información. Un eje de coordendas que siempre permite hallar de manera inmediata las relaciones de los nodos (eje X y su contraparte en eje Y). La limpieza de la cuadrícula cuando se obtienen los máximos o últimos nodos de relación crean un grafo más limpio para su análisis. Si bien en primera instancia no se hace ningún ordenamiento a los datos de entrada (como en los otros algoritmos vistos) sería interesante comprobar alguna mejora de tipo promedio de los nodos relacionados o conforme al último nodo de relación para tratar de comprobar si el diseño final se puede mejorar.
 
 # Algoritmos de visualización propuesto
 
@@ -175,6 +177,8 @@ El algoritmo para dibujar este tipo de grafos es el siguiente (se puede observar
 
 El grupo U se colocará flotando dependiendo del valor de Y y el grupo V se colocará sobre el eje X con un valor de Y = 0 siempre.
 
+\begingroup\scriptsize
+
 1. Se ordenan los nodos U de mayor cantidad de vecinos a menor cantidad de vecinos.
 
 2. Se calculan las coordenadas de grupo V:
@@ -218,9 +222,11 @@ El grupo U se colocará flotando dependiendo del valor de Y y el grupo V se colo
 
     a. Se dibujan y pintan las sierras. En caso que sea sólo un vecino se pinta un pino.
 
+\endgroup
+
 \begin{figure}[h]
  \centering
- \includegraphics[width=0.5\textwidth]{media/image8.png}
+ \includegraphics[width=0.5\textwidth]{media/Sierra4.png}
  \caption{Gráfico obtenido con nuestro algoritmo.}
  \label{fig:graficoSierra}
 \end{figure}

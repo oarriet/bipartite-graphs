@@ -23,7 +23,7 @@ function OrderedNode () {
 function initU() {
     root = [{id:0,x:0,y:0,label:"Lord of the Rings 1",type:1,pos:0,neighbors:[0,1,8]},
         {id:1,x:0,y:0,label:"The Hobbit 1",type:1,pos:0,neighbors:[0,1,8]},
-        {id:2,x:0,y:0,label:"Pirates of the Caribbean",type:1,pos:0,neighbors:[1,2]},
+        {id:2,x:0,y:0,label:"Pirates of the C.",type:1,pos:0,neighbors:[1,2]},
         {id:3,x:0,y:0,label:"Sin City",type:1,pos:0,neighbors:[0,3,4]},
         {id:4,x:0,y:0,label:"Pulp Fiction",type:1,pos:0,neighbors:[4,5,9]},
         {id:5,x:0,y:0,label:"Unbreakable",type:1,pos:0,neighbors:[4,5]},
@@ -178,7 +178,7 @@ function main() {
     draw = display.getContext('2d');
     draw.strokeStyle = 'black';
     draw.fillStyle = 'black';
-    draw.font = "12px Arial";
+    draw.font = "15px Arial";
 
     nodesU = initU();
     nodesV = initV();

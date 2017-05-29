@@ -57,7 +57,7 @@ function drawBoard(){
         index = x/gridSpacing;
         if(index < nodesV.length){
             nodeV = nodesV[x/gridSpacing];
-            context.font = "10px Arial";
+            context.font = "15px Arial";
             context.fillText(nodeV.label,20,x+p+gridSpacing);
             if(nodeV.neighbors && nodeV.neighbors.length > 0){
                 nodeV.neighbors = nodeV.neighbors.sort((a, b) => a - b);
@@ -79,7 +79,7 @@ function drawBoard(){
             latestUs.push(nodeU.neighbors[nodeU.neighbors.length - 1]);
             context.save();
             context.rotate( Math.PI / 2 );
-            context.font = "10px Arial";
+            context.font = "15px Arial";
             context.fillText(nodeU.label,50,-p-gridSpacing-x);
             context.restore();
         }
@@ -91,6 +91,8 @@ function drawBoard(){
 
 drawBoard();
 clearFillClearCircles();
+clearFirstY();
+clearFirstX();
 clearUnusedV();
 clearUnusedU();
 
@@ -107,6 +109,18 @@ function clearFillClearCircles(){
         context.clearRect(circle.x-11, circle.y-21, 11, 12);
         context.clearRect(circle.x, circle.y-8, 3, 8);
     }
+}
+
+function clearFirstY(){
+    context.save();
+    context.clearRect(0.5 + p, p, 1, bh + p);
+    context.restore();
+}
+
+function clearFirstX(){
+    context.save();
+    context.clearRect(p, p, bw + p, 1);
+    context.restore();
 }
 
 function clearUnusedV(){

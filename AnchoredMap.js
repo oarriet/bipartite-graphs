@@ -169,7 +169,7 @@ function main() {
     draw = display.getContext('2d');
     draw.strokeStyle = 'black';
     draw.fillStyle = 'black';
-    draw.font = "12px Arial";
+    draw.font = "15px Arial";
 
     nodesU = initU();
     nodesV = initV();
