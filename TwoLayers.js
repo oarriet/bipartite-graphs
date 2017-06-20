@@ -9,7 +9,6 @@ function Node () {
     this.x = 0;
     this.y = 0;
     this.label = "";
-    this.data = 0;
     this.pos = 0;
     this.neighbors = [];
     this.type = 0;
@@ -21,9 +20,44 @@ function OrderedNode () {
 }
 
 function initU() {
+    root = [{id:0,x:0,y:0,label:"Turdus falcklandii",type:1,pos:0,neighbors:[0,1,2,3,5,6,8]},
+        {id:1,x:0,y:0,label:"Mimus thenca",type:1,pos:0,neighbors:[0,1,2,3,6,10,11]},
+        {id:2,x:0,y:0,label:"Elania albiceps",type:1,pos:0,neighbors:[0,1,2,3,7,8]},
+        {id:3,x:0,y:0,label:"Lycalopex culpaeus",type:1,pos:0,neighbors:[0,1,5,7,9]},
+        {id:4,x:0,y:0,label:"Lycalopex griseus",type:1,pos:0,neighbors:[0,1,5]},
+        {id:5,x:0,y:0,label:"Curaeus curaeus",type:1,pos:0,neighbors:[0,6]},
+        {id:6,x:0,y:0,label:"Zonotrichia capensis",type:1,pos:0,neighbors:[2,3]},
+        {id:7,x:0,y:0,label:"Phytotoma rara",type:1,pos:0,neighbors:[1]},
+        {id:8,x:0,y:0,label:"Columba araucana",type:1,pos:0,neighbors:[0]},
+        {id:9,x:0,y:0,label:"Colaptes pitius",type:1,pos:0,neighbors:[2]},
+        {id:10,x:0,y:0,label:"Colorhamphus parvirostris",type:1,pos:0,neighbors:[4]},
+        {id:11,x:0,y:0,label:"Xolmis pyrope",type:1,pos:0,neighbors:[4]},
+        {id:12,x:0,y:0,label:"Anairetes parulus",type:1,pos:0,neighbors:[4]},
+        {id:13,x:0,y:0,label:"Oryctolagus cuniculus",type:1,pos:0,neighbors:[1]}
+    ];
+    return root;
+}
+
+function initV() {
+    root = [{id:0,x:0,y:0,label:"Aristotelia chilensis",type:0,pos:0,neighbors:[0,1,2,3,4,5,8]},
+        {id:1,x:0,y:0,label:"Lithrea caustica",type:0,pos:0,neighbors:[0,1,2,3,4,7,13]},
+        {id:2,x:0,y:0,label:"Schinus polygamus",type:0,pos:0,neighbors:[0,1,2,6,9]},
+        {id:3,x:0,y:0,label:"Cestrum parqui",type:0,pos:0,neighbors:[0,1,2,6]},
+        {id:4,x:0,y:0,label:"Maytenus boaria",type:0,pos:0,neighbors:[10,11,12]},
+        {id:5,x:0,y:0,label:"Muehlenbeckia hastulata",type:0,pos:0,neighbors:[0,3,4]},
+        {id:6,x:0,y:0,label:"Tristerix corymbosus",type:0,pos:0,neighbors:[0,1,5]},
+        {id:7,x:0,y:0,label:"Schinus molle",type:0,pos:0,neighbors:[2,3]},
+        {id:8,x:0,y:0,label:"Azara dentata",type:0,pos:0,neighbors:[0,2]},
+        {id:9,x:0,y:0,label:"Porlieria chilensis",type:0,pos:0,neighbors:[3]},
+        {id:10,x:0,y:0,label:"Tristerix aphyllus",type:0,pos:0,neighbors:[1]},
+        {id:11,x:0,y:0,label:"Trichocereus chilensis",type:0,pos:0,neighbors:[1]}
+    ];
+    return root;
+}
+/*function initU() {
     root = [{id:0,x:0,y:0,label:"Lord of the Rings 1",type:1,pos:0,neighbors:[0,1,8]},
         {id:1,x:0,y:0,label:"The Hobbit 1",type:1,pos:0,neighbors:[0,1,8]},
-        {id:2,x:0,y:0,label:"Pirates of the C.",type:1,pos:0,neighbors:[1,2]},
+        {id:2,x:0,y:0,label:"Pirates of the Caribbean",type:1,pos:0,neighbors:[1,2]},
         {id:3,x:0,y:0,label:"Sin City",type:1,pos:0,neighbors:[0,3,4]},
         {id:4,x:0,y:0,label:"Pulp Fiction",type:1,pos:0,neighbors:[4,5,9]},
         {id:5,x:0,y:0,label:"Unbreakable",type:1,pos:0,neighbors:[4,5]},
@@ -49,7 +83,7 @@ function initV() {
         {id:9,x:0,y:0,label:"Uma Thurman",type:0,pos:0,neighbors:[4,10]}
     ];
     return root;
-}
+}*/
 
 function drawLinks(draw,nodesU,nodesV) {
     var n = nodesU.length;
@@ -183,26 +217,26 @@ function main() {
     nodesU = initU();
     nodesV = initV();
 
-    draw.fillText("Original",150,400);
-    draw.fillText("Optimized",450,400);
+    draw.fillText("Original",230,600);
+    draw.fillText("Optimized",730,600);
 
     orderU = orderedArray(nodesU);
     orderV = orderedArray(nodesV);
-    linearLayout(nodesU,orderU,120,80,300,VERTICAL);
-    linearLayout(nodesV,orderV,220,80,300,VERTICAL);
+    linearLayout(nodesU,orderU,180,80,500,VERTICAL);
+    linearLayout(nodesV,orderV,350,80,500,VERTICAL);
     drawLinks(draw,nodesU,nodesV);
     drawNodes(draw,nodesU);
     drawNodes(draw,nodesV);
     drawLabels(draw,nodesU,RIGHT);
     drawLabels(draw,nodesV,LEFT);
 
-    draw.translate(320,0);
+    draw.translate(500,0);
 
     orderU = orderedArray(nodesU);
     orderV = orderedArray(nodesV);
     barycenter(draw,nodesU,orderU,nodesV,orderV);
-    linearLayout(nodesU,orderU,120,80,300,VERTICAL);
-    linearLayout(nodesV,orderV,220,80,300,VERTICAL);
+    linearLayout(nodesU,orderU,180,80,500,VERTICAL);
+    linearLayout(nodesV,orderV,350,80,500,VERTICAL);
     drawLinks(draw,nodesU,nodesV);
     drawNodes(draw,nodesU);
     drawNodes(draw,nodesV);
