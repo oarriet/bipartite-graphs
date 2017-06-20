@@ -8,17 +8,17 @@ function initU() {
     root = [{id:0,x:0,y:0,label:"Turdus falcklandii",type:1,pos:0,neighbors:[0,1,2,3,5,6,8]},
         {id:1,x:0,y:0,label:"Mimus thenca",type:1,pos:0,neighbors:[0,1,2,3,6,10,11]},
         {id:2,x:0,y:0,label:"Elania albiceps",type:1,pos:0,neighbors:[0,1,2,3,7,8]},
-        {id:3,x:0,y:0,label:"Lycalopex culpaeus",type:1,pos:0,neighbors:[0,1,5,7,9]},
-        {id:4,x:0,y:0,label:"Lycalopex griseus",type:1,pos:0,neighbors:[0,1,5]},
+        {id:3,x:0,y:0,label:"Lycalopex culp",type:1,pos:0,neighbors:[0,1,5,7,9]},
+        {id:4,x:0,y:0,label:"Lycalopex gri",type:1,pos:0,neighbors:[0,1,5]},
         {id:5,x:0,y:0,label:"Curaeus curaeus",type:1,pos:0,neighbors:[0,6]},
-        {id:6,x:0,y:0,label:"Zonotrichia capensis",type:1,pos:0,neighbors:[2,3]},
+        {id:6,x:0,y:0,label:"Zonotrichia cap",type:1,pos:0,neighbors:[2,3]},
         {id:7,x:0,y:0,label:"Phytotoma rara",type:1,pos:0,neighbors:[1]},
-        {id:8,x:0,y:0,label:"Columba araucana",type:1,pos:0,neighbors:[0]},
+        {id:8,x:0,y:0,label:"Columba arauc",type:1,pos:0,neighbors:[0]},
         {id:9,x:0,y:0,label:"Colaptes pitius",type:1,pos:0,neighbors:[2]},
-        {id:10,x:0,y:0,label:"Colorhamphus parvirostris",type:1,pos:0,neighbors:[4]},
+        {id:10,x:0,y:0,label:"Colorhamphus par",type:1,pos:0,neighbors:[4]},
         {id:11,x:0,y:0,label:"Xolmis pyrope",type:1,pos:0,neighbors:[4]},
         {id:12,x:0,y:0,label:"Anairetes parulus",type:1,pos:0,neighbors:[4]},
-        {id:13,x:0,y:0,label:"Oryctolagus cuniculus",type:1,pos:0,neighbors:[1]}
+        {id:13,x:0,y:0,label:"Oryctolagus cun",type:1,pos:0,neighbors:[1]}
     ];
     return root;
 }
@@ -29,7 +29,7 @@ function initV() {
         {id:2,x:0,y:0,label:"Schinus polygamus",type:0,pos:0,neighbors:[0,1,2,6,9]},
         {id:3,x:0,y:0,label:"Cestrum parqui",type:0,pos:0,neighbors:[0,1,2,6]},
         {id:4,x:0,y:0,label:"Maytenus boaria",type:0,pos:0,neighbors:[10,11,12]},
-        {id:5,x:0,y:0,label:"Muehlenbeckia hastulata",type:0,pos:0,neighbors:[0,3,4]},
+        {id:5,x:0,y:0,label:"Muehlenbeckia hast",type:0,pos:0,neighbors:[0,3,4]},
         {id:6,x:0,y:0,label:"Tristerix corymbosus",type:0,pos:0,neighbors:[0,1,5]},
         {id:7,x:0,y:0,label:"Schinus molle",type:0,pos:0,neighbors:[2,3]},
         {id:8,x:0,y:0,label:"Azara dentata",type:0,pos:0,neighbors:[0,2]},
@@ -39,7 +39,9 @@ function initV() {
     ];
     return root;
 }
-/*function initU() {
+
+/*
+ function initU() {
  root = [{id:0,x:0,y:0,label:"Lord of the Rings 1",type:1,pos:0,neighbors:[0,1,8]},
  {id:1,x:0,y:0,label:"The Hobbit 1",type:1,pos:0,neighbors:[0,1,8]},
  {id:2,x:0,y:0,label:"Pirates of the Caribbean",type:1,pos:0,neighbors:[1,2]},
@@ -74,9 +76,9 @@ nodesU = initU();
 nodesV = initV();
 
 // Box width
-var bw = nodesU.length * gridSpacing;
+var bw = (nodesU.length) * gridSpacing;
 // Box height
-var bh = nodesV.length * gridSpacing;
+var bh = (nodesV.length) * gridSpacing;
 // Padding
 var p = 175;
 
@@ -90,6 +92,23 @@ function drawBoard(){
         context.moveTo(0.5 + x + p, p);
         context.lineTo(0.5 + x + p, bh + p);
         index = x/gridSpacing;
+        if(index < nodesU.length){
+            nodeU = nodesU[x/gridSpacing];
+            nodeU.neighbors = nodeU.neighbors.sort((a, b) => a - b);
+            latestUs.push(nodeU.neighbors[nodeU.neighbors.length - 1]);
+            context.save();
+            context.rotate( Math.PI / 2 );
+            context.font = "15px Arial";
+            context.fillText(nodeU.label,50,-p-gridSpacing-x);
+            context.restore();
+        }
+    }
+
+
+    for (var x = 0; x <= bh; x += gridSpacing) {
+        context.moveTo(p, 0.5 + x + p);
+        context.lineTo(bw + p, 0.5 + x + p);
+        index = x/gridSpacing;
         if(index < nodesV.length){
             nodeV = nodesV[x/gridSpacing];
             context.font = "15px Arial";
@@ -101,22 +120,6 @@ function drawBoard(){
                     circles.push({x:p+(nodeV.neighbors[i]+1)*gridSpacing,y:p+(index+1)*gridSpacing});
                 }
             }
-        }
-    }
-
-
-    for (var x = 0; x <= bh; x += gridSpacing) {
-        context.moveTo(p, 0.5 + x + p);
-        context.lineTo(bw + p, 0.5 + x + p);
-        if(x/gridSpacing < nodesU.length){
-            nodeU = nodesU[x/gridSpacing];
-            nodeU.neighbors = nodeU.neighbors.sort((a, b) => a - b);
-            latestUs.push(nodeU.neighbors[nodeU.neighbors.length - 1]);
-            context.save();
-            context.rotate( Math.PI / 2 );
-            context.font = "15px Arial";
-            context.fillText(nodeU.label,50,-p-gridSpacing-x);
-            context.restore();
         }
     }
 
@@ -148,19 +151,19 @@ function clearFillClearCircles(){
 
 function clearFirstY(){
     context.save();
-    context.clearRect(0.5 + p, p, 1, bh + p);
+    context.clearRect(0.5 + p, p, 1, bw + p);
     context.restore();
 }
 
 function clearFirstX(){
     context.save();
-    context.clearRect(p, p, bw + p, 1);
+    context.clearRect(p, p, bh + p, 1);
     context.restore();
 }
 
 function clearUnusedV(){
     for(i = 0; i < latestVs.length; i++){
-        for(j = latestVs[i]; j < latestVs.length; j++){
+        for(j = latestVs[i]; j < latestUs.length; j++){
             context.save();
             context.clearRect(p+(j+1)*gridSpacing, p+((i+1)*gridSpacing), gridSpacing, 1);
             context.restore();
@@ -170,7 +173,7 @@ function clearUnusedV(){
 
 function clearUnusedU(){
     for(i = 0; i < latestUs.length; i++){
-        for(j = latestUs[i]; j < latestUs.length; j++){
+        for(j = latestUs[i]; j < latestVs.length; j++){
             context.save();
             context.clearRect(p+((i+1)*gridSpacing), p+(j+1)*gridSpacing, 1, gridSpacing);
             context.restore();
