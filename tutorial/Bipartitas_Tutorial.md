@@ -1,7 +1,7 @@
 ---
 title: Algoritmos sencillos para visualización de grafos bipartitas - Un tutorial
 author:
-- Oscar Arrieta / Jason Ocampo
+- Armando Arce / Oscar Arrieta / Jason Ocampo
 - Escuela de Informática, Universidad Nacional, Heredia, Costa Rica
 abstract:
 bibliography: bibliografia.bib

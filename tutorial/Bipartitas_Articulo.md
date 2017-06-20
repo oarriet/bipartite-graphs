@@ -1,7 +1,7 @@
 ---
 title: Dibujando Grafos Bipartitas como Sierras
 author:
-  - Oscar Arrieta / Jason Ocampo
+  - Armando Arce / Oscar Arrieta / Jason Ocampo
   - Escuela de Informática, Universidad Nacional, Heredia, Costa Rica
 header-includes:
 abstract: Un método para dibujar grafos bipartitas como Sierras es expuesto. Supongamos que existen dos grupos de nodos, U y V. Una Sierra va a ordenar los nodos del grupo V en el piso y los nodos del grupo U en una altura dependiendo de la cantidad de relaciones de ese nodo con el otro grupo. Además se dibujan triángulos para ejemplificar las montañas y se colorean de un tono verde dependiendo del tamaño. Este artículo explica el criterio estético y expone un algoritmo para poder dibujar cualquier grafo bipartita de esta manera. El rendimiento y objetivo son mencionados en las conclusiones.
