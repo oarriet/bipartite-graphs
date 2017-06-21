@@ -70,7 +70,7 @@ El algoritmo de incrustación esférica (SE por sus siglas en inglés) fue dise�
 
 \begin{figure}[h]
  \centering
- \includegraphics[width=0.5\textwidth]{media/image6.png}
+ \includegraphics[width=0.5\textwidth]{media/image7.png}
  \caption{Optimización de Gráficos Bipartitas a SE.}
  \label{fig:transSE}
 \end{figure}
@@ -97,7 +97,7 @@ Y en el siguiente dibujo podemos ver cómo se ve un el mismo grafo bipartita dib
 
 \begin{figure}[h]
  \centering
- \includegraphics[width=0.5\textwidth]{media/image5.png}
+ \includegraphics[width=0.5\textwidth]{media/image9.png}
  \caption{Ejemplo de Mapa Anclado ordenado.}
  \label{fig:ejemploMapaAnclado}
 \end{figure}

@@ -207,6 +207,21 @@ function barycenter(draw,nodesU,orderU,nodesV,orderV) {
     }
 }
 
+/**
+ * Descending order by amount of neighbors.
+ *
+ * @param a Node a
+ * @param b Node b
+ * @returns {number}
+ */
+function neighborsComparator(a, b) {
+    if (a.neighbors.length > b.neighbors.length)
+        return -1;
+    if (a.neighbors.length < b.neighbors.length)
+        return 1;
+    return 0;
+}
+
 function main() {
     display = document.getElementById('canvas');
     draw = display.getContext('2d');
@@ -216,6 +231,10 @@ function main() {
 
     nodesU = initU();
     nodesV = initV();
+
+    //Order by weight = number of neighbors.
+    nodesU.sort(neighborsComparator);
+    nodesV.sort(neighborsComparator);
 
     draw.fillText("Original",230,600);
     draw.fillText("Optimized",730,600);
@@ -231,6 +250,10 @@ function main() {
     drawLabels(draw,nodesV,LEFT);
 
     draw.translate(500,0);
+
+    //Reset everything to order barycenter
+    nodesU = initU();
+    nodesV = initV();
 
     orderU = orderedArray(nodesU);
     orderV = orderedArray(nodesV);

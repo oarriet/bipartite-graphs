@@ -24,11 +24,11 @@ Existen numerosos modelos de grafos de dos conjuntos, el más común puede ser t
 
 ## Áreas de aplicación
 
-Los gráficos bipartitos se utilizan ampliamente en la teoría de codificación, principalmente para decodificar las palabras de código. Los gráficos de factores y los gráficos de Tanner son ejemplos de esto, este último es un gráfico bipartito en el que los vértices de un lado de la bipartición representan dígitos de una palabra de código y los vértices del otro lado representan combinaciones de dígitos que se espera sumar a cero en una palabra de código sin errores. Un gráfico de factores es una red relacionada usada para decodificación probabilística de LDPC (Low Density Parity Check son una clase de códigos de corrección de error lineal que permiten transmitir un mensaje por un canal de comunicaciones ruidoso ).
+Los gráficos bipartitos se utilizan ampliamente en la teoría de codificación, principalmente para decodificar las palabras de código. Los gráficos de factores y los gráficos de Tanner [@R2015] son ejemplos de esto, este último es un gráfico bipartito en el que los vértices de un lado de la bipartición representan dígitos de una palabra de código y los vértices del otro lado representan combinaciones de dígitos que se espera sumar a cero en una palabra de código sin errores.
 
-Otro ejemplo a nivel informático son las redes de Petri, herramientas de modelado matemático utilizada en el análisis y simulaciones de sistemas concurrentes. Un sistema es modelado como un grafo bipartito dirigido con dos conjuntos de nodos: Un conjunto de nodos "lugar" que contienen recursos y un conjunto de nodos "evento" que generan y / o consumen recursos. Estas redes utilizan las propiedades de los gráficos bipartitos dirigidos y otras propiedades para permitir pruebas matemáticas del comportamiento de los sistemas al mismo tiempo que permiten la implementación fácil de simulaciones del sistema.
+Otro ejemplo a nivel informático son las redes de Petri [@Kibria], herramientas de modelado matemático utilizado en el análisis y simulaciones de sistemas concurrentes. Un sistema es modelado como un grafo bipartito dirigido con dos conjuntos de nodos: Un conjunto de nodos "lugar" que contienen recursos y un conjunto de nodos "evento" que generan y / o consumen recursos.
 
-En la geometría proyectiva, los gráficos de Levi son una forma de gráfico bipartito utilizado para modelar las incidencias entre puntos y líneas en una configuración. Correspondiendo a la propiedad geométrica de puntos y líneas que cada dos líneas se encuentran en un punto y cada dos puntos se conectan con una sola línea.
+En la geometría proyectiva, los gráficos de Levi [@Grunbaum2009] son una forma de gráfico bipartito utilizado para modelar las incidencias entre puntos y líneas en una configuración. Correspondiendo a la propiedad geométrica de puntos y líneas que cada dos líneas se encuentran en un punto y cada dos puntos se conectan con una sola línea.
 
 Los gráficos bipartitos también se pueden encontrar campos más triviales. Ejemplos incluyen las relaciones entre los documentos y las palabras incluidas en ellos, gráficos que muestran las relaciones entre los clientes y las mercancías que compraron, además muestran las relaciones entre las comunidades y sus miembros. Con estas aplicaciones de los grafos se logran análisis de comportamientos, definiendo posibles patrones en cuanto a consumo o búsquedas de los usuarios segmentando a los mismos para posteriores tomas de decisiones.
 
@@ -38,11 +38,11 @@ Gráfico bipartita puede modelar las situaciones comunes, así como graves probl
 
 La computación en nube es una computación basada en Internet. Se basa en compartir recursos informáticos que se entregan como servicios en Internet. El servicio Web es uno de los tipos de servicios más importantes que se pueden utilizar en la computación en nube. Pero muchos de ellos pueden ser similares en algunas propiedades funcionales o no funcionales, haciendo cómo recomendar un servicio web adecuado un problema que enfrentan muchos desarrolladores. Los investigadores han tenido en cuenta los atributos de QoS. Sin embargo, su investigación se basa en la premisa de que todos los servicios web recomendados son compatibles, es decir, los servicios web recomendados se pueden componer con los servicios web existentes. Puede que no siempre sea cierto. En el documento, se tiene en cuenta la compatibilidad de los servicios web y se presenta un método de Recomendación de Servicio basado en Gráficos Bipartitos (BIGSIR) para abordar el problema de compatibilidad de servicios. [@R2015]
 
-El trabajo en BIGSIR utiliza los datos de uso histórico de los servicios web para recomendar servicios web a los desarrolladores. Diferente de los enfoques existentes de recomendación de servicio web, BIGSIR adopta un gráfico bipartito para visualizar los servicios web y la relación entre ellos. Basado en el modelo de gráfico, se introduce un algoritmo de recomendación efectivo para recomendar los servicios web adecuados. El enfoque en se evalúa en un conjunto de datos construido a partir de Experiment, un motor de búsqueda que contiene alrededor de 1.851 servicios web y 2.000 flujos de trabajo. Los resultados experimentales demuestran que, aparte de algunos servicios web aislados o flujos de trabajo, BIGSIR puede obtener resultados prometedores. Este trabajo no sólo proporciona un nuevo conjunto de datos, sino que también pone de relieve una nueva perspectiva para la recomendación de servicios, es decir, los servicios como una red bipartita.
+El trabajo en BIGSIR [@R2015] utiliza los datos de uso histórico de los servicios web para recomendar servicios web a los desarrolladores. Diferente de los enfoques existentes de recomendación de servicio web, BIGSIR adopta un gráfico bipartito para visualizar los servicios web y la relación entre ellos. Basado en el modelo de gráfico, se introduce un algoritmo de recomendación efectivo para recomendar los servicios web adecuados. El enfoque en se evalúa en un conjunto de datos construido a partir de Experiment, un motor de búsqueda que contiene alrededor de 1.851 servicios web y 2.000 flujos de trabajo. Los resultados experimentales demuestran que, aparte de algunos servicios web aislados o flujos de trabajo, BIGSIR puede obtener resultados prometedores. Este trabajo no sólo proporciona un nuevo conjunto de datos, sino que también pone de relieve una nueva perspectiva para la recomendación de servicios, es decir, los servicios como una red bipartita.
 
 La aplicación del software Map Reduce es un marco para el procesamiento de aplicaciones de datos intensivos con una manera paralela en los sistemas de computación en la nube. También hay un número creciente de trabajos de reducción de mapa que requieren garantías de plazo. La fecha límite existente, relativa a los esquemas de programación, no considera los dos problemas en el entorno de cálculo del mapa reducido: la heterogeneidad del rendimiento de las ranuras y la variación del tiempo de trabajo. En este trabajo, se utiliza el modelo de gráficos bipartitos para proponer un nuevo Planificador de Reducción de Mapa llamado BGMRS. El BGMRS puede obtener la solución óptima del problema de programación con límite de tiempo, transformando el problema en un problema de gráfico bien conocido: coincidencia bipartita ponderada mínima. [@R2015]
 
-A nivel de protección de servidores de aplicaciones encontramos el uso de un algoritmo bipartito. Los IDS (Intrusion Detection Systems) monitorean y registran las peticiones capturando los eventos de red (alertas o actividades sospechosas) en un conjunto de datos multidimensional que almacena el origen, el tiempo y la naturaleza de cada evento. Dada la cantidad de eventos es indispensable el análisis automatizado de los datos, así como de propios usuarios expertos en seguridad para la comprensión de la actividad de la red y eventualmente adaptar las estrategias de seguridad. Aquí entra en juego el algoritmo  AlertWheel el cual utiliza una visualización radial, y también muestra la ubicación, tiempo y naturaleza de muchos eventos a la vez. La visualización de tales ataques es útil para los analistas de red durante el brote de una infección virulenta Malware en Internet. En la Figura \ref{fig:IDS} vemos un ejemplo de aplicación de dicho algoritmo al caso mencionado.
+A nivel de protección de servidores de aplicaciones encontramos el uso de un algoritmo bipartito. Los IDS (Intrusion Detection Systems) [@Dumas2006] monitorean y registran las peticiones capturando los eventos de red (alertas o actividades sospechosas) en un conjunto de datos multidimensional que almacena el origen, el tiempo y la naturaleza de cada evento. Aquí entra en juego el algoritmo AlertWheel el cual utiliza una visualización radial, y también muestra la ubicación, tiempo y naturaleza de muchos eventos a la vez. La visualización de tales ataques es útil para los analistas de red durante el brote de una infección virulenta Malware en Internet. En la Figura \ref{fig:IDS} vemos un ejemplo de aplicación de dicho algoritmo al caso mencionado.
 
 \begin{figure}[h]
  \centering
@@ -74,30 +74,13 @@ Los requisitos comunes para dibujar un gráfico bipartito son que la bipartició
 
 El propósito de la visualización gráfica bipartita es mostrar simultáneamente dos tipos de relaciones: las similitudes existentes entre los elementos dentro de cada uno de los dos subconjuntos, sobre la base de las relaciones definidas por los bordes del gráfico. [@Usui2007]
 
-A. Definición formal de un gráfico bipartito
+### Definición formal de un gráfico bipartito
 
-Una gráfica G se define como G: = {V, E}, donde V es el conjunto de vértices o nodos y E el conjunto de aristas. El Gráfico G no está dirigido si las parejas en E no están ordenadas. Un gráfico no dirigido G se denomina gráfico bipartito si existe una partición del conjunto de vértices V = VA ∪ VB, de modo que no hay borde en E que conecte VA a VB. [@Usui2007]
+Una gráfica G se define como G: = {V, E}, donde V es el conjunto de vértices o nodos (U, V) y E el conjunto de aristas. El Gráfico G no está dirigido si las parejas en E no están ordenadas. Un gráfico no dirigido G se denomina gráfico bipartito si existe una partición del conjunto de vértices V = VA ∪ VB, de modo que no hay borde en E que conecte VA a VB. [@Usui2007]
 
-Para los fines de este trabajo, un grafo bipartito G = (U, L, E) consiste en dos conjuntos U y L de vértices y un conjunto E G U x L de bordes. Obsérvese que una bipartición de vértice U, L específica se especifica en la definición de G. Por lo tanto, las referencias a G suponen que esta partición especificada. [@Battista1994]
-
-A menudo es útil dibujar G de modo que los vértices de U (la "parte superior") y L (la "parte inferior") estén sobre líneas horizontales & y At, respectivamente, con AU por encima de 2; Los bordes se dibujan como segmentos de línea recta abiertos entre sus extremos como en la Fig. 1. Una vez que se especifican las coordenadas y de las líneas horizontales Ja y ', se define un dibujo de G dando una coordenada x para cada vértice, ya que las coordenadas y de los vértices de U y L son iguales a las coordenadas y de A , y &,, respectivamente. [@Battista1994]
-
-Un dibujo es biplanar si no tiene pasos de borde; Un gráfico es biplanar si tiene un dibujo biplanar. En este artículo investigamos el problema de encontrar, dado un gráfico bipartito, un subgrafo biplanar con un número máximo de aristas. (El subgrafo biplanar no necesita ser inducido.) También estudiamos este problema cuando las posiciones de algunos o de todos los vértices son prescritas. [@Battista1994]
-
-Sea G = (V1, V2, E) un gráfico bipartito. Un dibujo de 2 capas de G tiene un paso de ventilador si existen dos bordes adyacentes que están ambos cruzados por un tercer borde; Decimos que los tres bordes involucrados en el cruce lo conforman. Para un dibujo de 2 capas dado de G, denote por li la línea horizontal sobre la cual se dibujan los vértices de Vi (i = 1,2). Siempre suponemos que l1 está por encima de l2. Dos dibujos de 2 capas de G son equivalentes si tienen el mismo orden de izquierda a derecha πi de los vértices de Vi (i = 1, 2) a lo largo de li. Una incrustación de 2 capas es una clase de equivalencia de dibujos de dos capas y se describe mediante un par de ordenamientos lineales (es decir, permutaciones) γ = (π1, π2) de los vértices en V1 y V2, respectivamente. Si Γ es un dibujo dentro de la clase γ, también decimos que γ es la incorporación de Γ.
-
-Sea Γ1 y Γ2 dibujos de 2 capas de G con la misma incorporación γ. Dos aristas e y e 'cruzan en Γ1 si y sólo si cruzan en Γ2. Decimos que la incrustación γ tiene un cruce en los bordes ey e '. Además, tres bordes e, e 'y e' 'forman un ventilador que cruza en Γ1 si y sólo si forman un ventilador que cruza en Γ2. Correspondientemente, decimos que la incrustación γ tiene un ventilador que cruza los bordes e, e ', y e' '. Sea γ = (π1, π2) una incrustación de 2 capas de un grafo bipartito G. El primer vértice de π1 y el primer vértice de π2 se llaman los vértices más izquierdos de γ; El último vértice de π1 y el último vértice de π2 se llaman los vértices más a la derecha de γ. [@DiGiacomo2014]
-
-En el campo matemático de la teoría gráfica, un gráfico bipartito (o bigraph) es un grafo cuyos vértices pueden
-Se dividen en dos conjuntos disjuntos U y V (es decir, U y V son cada uno independiente establece tales que cada borde conecta un vértice en U a uno en V. El vértice fijó U y V se denota a menudo como partite los sistemas. Equivalente, un bipartito Es un gráfico que no contiene ciclos de longitudes impares. [@R2015]
+Para los fines de este trabajo, un grafo bipartito G = (U, V, E) consiste en dos conjuntos U y V de vértices. A menudo es útil dibujar G de modo que los vértices de U (la "parte superior") y V (la "parte inferior") estén sobre líneas horizontales, respectivamente; Los bordes se dibujan como segmentos de línea recta abiertos entre sus extremos. Una vez que se especifican las coordenadas y de las líneas horizontales, se define un dibujo de G dando una coordenada x para cada vértice, ya que las coordenadas y de los vértices de U y V son iguales a las coordenadas. [@Battista1994]
 
 Los dos conjuntos U y V pueden ser pensados ​​como un color del gráfico con dos colores: si uno colorea todos los nodos en U azul, y todos los nodos en V verde, cada borde tiene extremos de diferentes colores, como se requiere en el problema de coloración del gráfico. Por el contrario, tal coloración es imposible en el caso de un grafo no bipartito, tal como un triángulo después de que un nodo esté coloreado de azul y otro de verde, el tercer vértice del triángulo está conectado a vértices de ambos colores, impidiéndole ser asignado cualquiera de los colores.
-
-A menudo se escribe G = (U, V, E) para denotar un grafo bipartito cuya partición tiene las partes U y V, con Edenoting los bordes de la gráfica. Si un gráfico bipartito no está conectado, puede tener más de una bipartición; En este caso, la notación (U, V, E) es útil para especificar una bipartición particular que puede ser importante en una aplicación. Si │U│ = │V│, es decir, si los dos subconjuntos tienen cardinalidad igual, entonces Gis se llama un gráfico bipartito equilibrado. Si todos los vértices del mismo lado de la bipartición tienen el mismo grado, entonces Gis se llama bi-regular. El elemento a buscar en la nube puede ser modelado como una nube bipartita, además, los algoritmos de coincidencia perfecta, teoremas y lemas pueden, obviamente, matemáticamente modelado y analizado.
-
-Un grafo bipartito G = (U; V; E) es especificado por dos conjuntos disjuntos U y V de vértices, y un conjunto E de bordes entre ellos. Una coincidencia perfecta es un subconjunto del conjunto de bordes E tal que cada vértice tiene exactamente un borde incidente sobre él. Puesto que estamos interesados ​​en la correspondencia perfecta en el gráfico G, asumiremos que | U | = | V | = n. Sea U = {u1; U2; _ _ _; Un} y V = {v1; V2; _ _ _; Vn}. El algoritmo no tiene ningún error si G no tiene una coincidencia perfecta (no hay instancia), y los errores con probabilidad a lo sumo 1/2 si G tiene una correspondencia perfecta (sí instancia). [@R2015]
-
-Los dos conjuntos disjuntos U y V donde Set U contiene datos a buscar y se almacenan datos de Set V. El partido hecho con estos dos conjuntos disjuntos para coincidir con los datos exactos buscados en el Conjunto V.
 
 # Algoritmos de visualización existentes
 
@@ -116,7 +99,7 @@ Una convención típica para dibujar un grafo G es poner los vértices del grupo
  \label{fig:verticesUyV}
 \end{figure}
 
-Como se puede observar en la Figura \ref{fig:relDirectas}: El objetivo de dibujar un grafo bipartita con la técnica de dos capas es mejorar la visualización por medio de relaciones directas, las cuales son más intuitivas al ojo y razonamiento humano. Cualquier grafo bipartita (a) puede ser dibujado por convertido a un plano de dos capas (b) por medio de esta técnica.
+Como se puede observar en la Figura \ref{fig:relDirectas}: El beneficio de dibujar un grafo bipartita con la técnica de dos capas es mejorar la visualización por medio de relaciones directas, las cuales son más intuitivas al ojo y razonamiento humano. Cualquier grafo bipartita puede ser dibujado por convertido a un plano de dos capas por medio de esta técnica.
 
 \begin{figure}[h]
  \centering
@@ -126,6 +109,8 @@ Como se puede observar en la Figura \ref{fig:relDirectas}: El objetivo de dibuja
 \end{figure}
 
 El algoritmo para crear un grafo de dos capas es bastante sencillo [@Nagamochi2005], el mismo sigue esta lógica (se puede observar el resultado final en la Figura \ref{fig:graficoTwoLayer}):
+
+\begingroup\scriptsize
 
 1.  Se toman todos elementos del primer set (Grupo U) y se ordenan en una línea recta, ya sea horizontal o vertical.
 
@@ -173,6 +158,8 @@ El algoritmo para crear un grafo de dos capas es bastante sencillo [@Nagamochi20
 
     c.  Se repite por cada elemento ‘u’.
 
+\endgroup
+
 \begin{figure}[h]
  \centering
  \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image10.png}}
@@ -197,12 +184,12 @@ Un ejemplo de uso de matchings o emparejamientos son los sitios para búsqueda d
 
 ## Incrustación Esférica (Spherical Embedding)
 
-El algoritmo de incrustación esférica (SE por sus siglas en inglés) fue diseñado principalmente para visualización de grafos bipartitas[@Usui2007]. Los ítems de los dos grupos U y V son representados por medio de nodos posicionados en dos círculos concéntricos. Los ítems del grupo U son mapeados en el círculo interior y los ítems del grupo V son mapeados en el círculo exterior con un radio del doble del círculo interno. El propósito de este gráfico es posicionar los nodos de una manera que los items similares estén lo más cerca posible en cada uno de sus respectivos círculos. La Figura \ref{fig:transSE} muestra el proceso de construcción de un grafo bipartita y su visualización utilizando el algoritmo de incrustación esférica.
+El algoritmo de incrustación esférica (SE por sus siglas en inglés) fue diseñado principalmente para visualización de grafos bipartitas[@Usui2007]. Los ítems de los dos grupos U y V son representados por medio de nodos posicionados en dos círculos concéntricos. Los ítems del grupo U son mapeados en el círculo interior y los ítems del grupo V son mapeados en el círculo exterior con un radio del doble del círculo interno. El propósito de este gráfico es posicionar los nodos de una manera que los items similares estén lo más cerca posible en cada uno de sus respectivos círculos. La Figura \ref{fig:transSE} muestra el proceso de optimización desde los datos un grafo bipartita a su visualización utilizando el algoritmo de incrustación esférica después de ser ordenados por el algoritmo.
 
 \begin{figure}[h]
  \centering
  \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image6.png}}
- \caption{Transformación de Gráficos Bipartitas a SE.}
+ \caption{Optimización de Gráficos Bipartitas a SE.}
  \label{fig:transSE}
 \end{figure}
 
@@ -211,6 +198,8 @@ Para conseguir esta visualización buscamos las coordenadas de los nodos del gr�
 Básicamente la heurística baricéntrica utilizada en el ejemplo intenta acercar los nodos relacionados entre sí, tanto en el círculo interior como en el exterior. Una forma de visualizar que esto se logra es ver la reducción de relaciones que pasan cerca del centro del gráfico; ya que al tener los nodos relacionados más cerca, las relaciones pasan a ser más cortas y no deberían cruzar el gráfico. [@Zheng2005]
 
 El algoritmo para dibujar este tipo de grafos es el siguiente (se puede observar el resultado final en la Figura \ref{fig:graficoSE}):
+
+\begingroup\scriptsize
 
 1. Dibujar el círculo interno:
 
@@ -264,6 +253,8 @@ El algoritmo para dibujar este tipo de grafos es el siguiente (se puede observar
 
 7. Se trazan las relaciones entre los nodos.
 
+\endgroup
+
 \begin{figure}[h]
  \centering
  \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image7.png}}
@@ -279,16 +270,9 @@ A continuación vamos a describir la técnica propuesta para dibujar mapas ancla
 
 Los mapas anclados restringen la posición de algunos nodos pero permite que otros nodos sean ordenados libremente. Los nodos restringidos son los llamados “anclas” y los demás son los nodos “libres”.
 
-Hay muchas variaciones en la restricción de los nodos anclas. La más simple es que cada ancla está fijo en una coordenada, también es posible restringir las anclas en una curva, en un área, etc. En la Figura \ref{fig:varBipartitas} podemos ver varios tipos de técnicas para dibujar un grafo bipartita.
+Hay muchas variaciones en la restricción de los nodos anclas. La más simple es que cada ancla está fijo en una coordenada, también es posible restringir las anclas en una curva, en un área, etc.
 
-\begin{figure}[h]
- \centering
- \makebox[\textwidth]{\includegraphics[width=\textwidth]{media/image4.png}}
- \caption{Variaciones de Gráficos Bipartitas.}
- \label{fig:varBipartitas}
-\end{figure}
-
-Y en el siguiente dibujo podemos ver cómo se ve un el mismo grafo bipartita dibujado como mapa anclado. Los nodos principales representados por la letra C son arreglados en forma de pentágono, y los nodos M son ordenados en una posición donde se pueda interpretar su relación con C. Como se puede observar en la Figura \ref{fig:ejemploMapaAnclado}: la distinción de nodos es más clara que en los gráficos anteriores.
+Y en el siguiente dibujo podemos ver cómo se ve un el mismo grafo bipartita dibujado como mapa anclado. Los nodos principales son arreglados en forma de polígono, y los otros nodos son ordenados en una posición donde se pueda interpretar su relación con el polígono. Como se puede observar en la Figura \ref{fig:ejemploMapaAnclado}: la distinción de nodos es más clara que en los gráficos anteriores.
 
 \begin{figure}[h]
  \centering
@@ -308,6 +292,8 @@ La convención para dibujar este tipo de grafos como mapas anclados es así:
 Siguiendo estas convenciones se puede observar claramente la afinidad de los nodos libres a cada uno de los nodos anclados. Además de poder ver grupos de nodos libres más cercanos entre ellos, lo que demuestra una afinidad entre ellos pero que no es explícita por el grafo bipartita o la información cruda.
 
 El algoritmo para dibujar este tipo de grafos es el siguiente (se puede observar el resultado final en la Figura \ref{fig:graficoMapaAnclado}):
+
+\begingroup\scriptsize
 
 1.  Ordenar las anclas en intervalos iguales.
 
@@ -331,6 +317,8 @@ El algoritmo para dibujar este tipo de grafos es el siguiente (se puede observar
 
 2.  Ordenar los nodos libres en posiciones dependiendo de su relación con las anclas.
 
+\endgroup
+
 Como se puede ver en el algoritmo anterior los mayores cálculo matemáticos son ejecutados en encontrar la penalidad de cada par de anclas del mapa y después en la atracción de cada nodo libre contra las anclas.
 
 \begin{figure}[h]
@@ -350,6 +338,8 @@ La identificación de las relaciones una vez la matriz está completa es sencill
 
 El algoritmo para dibujar este tipo de grafos es el siguiente (se puede observar el resultado final en la Figura \ref{fig:graficoArcos}):
 
+\begingroup\scriptsize
+
 1. Con base en la cantidad elementos de cada conjunto se calculan el largo y ancho de la matriz para el dibujado inicial de la cuadrícula total.
 
 2. Se iteran por separado los conjuntos. En cada iteración del primer conjunto se determinan los arcos a dibujar. Además se ordena y guarda el último nodo de relación en su conjunto contrario (esto sí aplica para ambos conjuntos).
@@ -357,6 +347,8 @@ El algoritmo para dibujar este tipo de grafos es el siguiente (se puede observar
 3. Una vez la cuadrícula está completa se dibujan los arcos, para esto se dibuja un círculo completo y se elimina posteriormente lo que no conforma el arco de la relación entre los nodos.
 
 4. Finalmente se eliminan las líneas de la cuadrícula a partir de la última relación de los conjuntos para cada nodo.
+
+\endgroup
 
 \begin{figure}[h]
  \centering
@@ -422,6 +414,8 @@ El algoritmo para dibujar este tipo de grafos es el siguiente (se puede observar
 
 El grupo U se colocará flotando dependiendo del valor de Y y el grupo V se colocará sobre el eje X con un valor de Y = 0 siempre.
 
+\begingroup\scriptsize
+
 1. Se ordenan los nodos U de mayor cantidad de vecinos a menor cantidad de vecinos.
 
 2. Se calculan las coordenadas de grupo V:
@@ -464,6 +458,8 @@ El grupo U se colocará flotando dependiendo del valor de Y y el grupo V se colo
 4. Por cada nodo en U:
 
     a. Se dibujan y pintan las sierras. En caso que sea sólo un vecino se pinta un pino.
+
+\endgroup
 
 \begin{figure}[h]
  \centering
